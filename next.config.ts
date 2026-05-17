@@ -4,7 +4,7 @@ const nextConfig: NextConfig = {
   output: 'export',
   distDir: 'dist',
   trailingSlash: true,
-  assetPrefix: '.',
+  // assetPrefix removed — absolute paths required for sub-routes
   images: {
     unoptimized: true,
   },

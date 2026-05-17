@@ -64,7 +64,7 @@ export default function PlayPage() {
             className="w-full h-full border-0"
             allow="fullscreen"
             title="GOO RUNNER"
-            sandbox="allow-scripts allow-same-origin allow-fullscreen"
+            sandbox="allow-scripts allow-same-origin"
             loading="lazy"
           />
         </div>
