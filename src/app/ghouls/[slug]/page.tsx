@@ -20,6 +20,15 @@ export default async function GhoulPage({ params }: Props) {
 
   const isGoo = ghoul.id === "goo";
 
+  const ghoulDomains: Record<string, string> = {
+    beauty: "https://www.beautyghoul.com",
+    garden: "https://www.gardenghoul.com",
+    zen: "https://www.zenghoul.com",
+    tradie: "https://www.tradieghoul.com",
+    party: "https://www.partyghoul.com",
+  };
+  const hasDomain = ghoul.id in ghoulDomains;
+
   const statIcons: Record<string, React.ReactNode> = {
     power: <Sword className="w-4 h-4" />,
     speed: <Zap className="w-4 h-4" />,
@@ -161,6 +170,22 @@ export default async function GhoulPage({ params }: Props) {
               <div>
                 <p className="text-text-dim text-xs uppercase tracking-wider mb-1">Character Site</p>
                 <p className="font-cinzel font-bold text-cyan-glow">Visit GOOGHOUL.com</p>
+              </div>
+            </a>
+          )}
+          {hasDomain && (
+            <a
+              href={ghoulDomains[ghoul.id]}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="glass-glow rounded-xl p-6 flex items-center gap-4 hover:border-cyan-glow/30 transition-colors"
+            >
+              <div className="w-16 h-16 rounded-full flex items-center justify-center text-3xl" style={{ backgroundColor: `${ghoul.colorHex}15` }}>
+                {ghoul.icon}
+              </div>
+              <div>
+                <p className="text-text-dim text-xs uppercase tracking-wider mb-1">Character Site</p>
+                <p className="font-cinzel font-bold" style={{ color: ghoul.colorHex }}>Visit {ghoul.name.replace(' GHOUL', '')}GHOUL.com</p>
               </div>
             </a>
           )}
