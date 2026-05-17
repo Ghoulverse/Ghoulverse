@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; frame-ancestors 'self';">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>GOO RUNNER | GHOULVERSE</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👻</text></svg>">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      touch-action: none;
+    }
+    
+    body {
+      background: #000;
+      overflow: hidden;
+      font-family: 'Courier New', monospace;
+    }
+    
+    #gameCanvas {
+      display: block;
+      background: radial-gradient(ellipse at center, #0a0a12 0%, #000 100%);
+    }
+    
+    #ui {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+    
+    .hud {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      color: #00f0ff;
+      font-size: 24px;
+      font-weight: bold;
+      text-shadow: 0 0 20px #00f0ff;
+    }
+    
+    .ghoul-display {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      color: #fff;
+    }
+    
+    .ghoul-emoji {
+      font-size: 32px;
+      display: block;
+      text-shadow: 0 0 20px currentColor;
+    }
+    
+    .ghoul-name {
+      font-size: 12px;
+      opacity: 0.8;
+      margin-top: 2px;
+    }
+    
+    .orb-meter {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 200px;
+      height: 30px;
+      border: 2px solid #a855f7;
+      border-radius: 15px;
+      overflow: hidden;
+      background: rgba(0,0,0,0.5);
+    }
+    
+    .orb-count {
+      position: absolute;
+      top: 55px;
+      right: 20px;
+      color: #a855f7;
+      font-size: 18px;
+      font-weight: bold;
+      text-shadow: 0 0 10px #a855f7;
+    }
+    
+    .orb-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #a855f7, #ff00ff);
+      transition: width 0.3s;
+      box-shadow: 0 0 20px #a855f7;
+    }
+    
+    .start-screen, .game-over-screen {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.9);
+      pointer-events: auto;
+    }
+    
+    .title {
+      font-size: 64px;
+      font-weight: 900;
+      background: linear-gradient(135deg, #00f0ff, #a855f7, #ff00ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    
+    .subtitle {
+      color: rgba(255,255,255,0.6);
+      font-size: 16px;
+      margin-bottom: 30px;
+      text-align: center;
+      line-height: 1.5;
+    }
+    
+    .ghoul-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+      margin-bottom: 30px;
+      max-width: 400px;
+    }
+    
+    .ghoul-card {
+      width: 80px;
+      height: 100px;
+      border: 2px solid #333;
+      border-radius: 10px;
+      background: rgba(0,0,0,0.5);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s;
+      position: relative;
+    }
+    
+    .ghoul-card.unlocked {
+      border-color: currentColor;
+    }
+    
+    .ghoul-card.unlocked:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 20px currentColor;
+    }
+    
+    .ghoul-card.selected {
+      transform: scale(1.15);
+      box-shadow: 0 0 30px currentColor;
+    }
+    
+    .ghoul-card.locked {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+    
+    .ghoul-card .emoji {
+      font-size: 36px;
+      margin-bottom: 5px;
+    }
+    
+    .ghoul-card .name {
+      font-size: 10px;
+      color: #fff;
+      text-align: center;
+    }
+    
+    .ghoul-card .cost {
+      font-size: 9px;
+      color: rgba(255,255,255,0.5);
+      position: absolute;
+      bottom: 5px;
+    }
+    
+    .btn {
+      padding: 18px 50px;
+      font-size: 22px;
+      font-weight: bold;
+      background: #00f0ff;
+      color: #000;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 40px #00f0ff;
+    }
+    
+    .hidden {
+      display: none !important;
+    }
+    
+    /* Store Styles */
+    .store-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.95);
+      z-index: 3000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .store-content {
+      background: linear-gradient(135deg, #1a1a2e, #16213e);
+      border: 3px solid #a855f7;
+      border-radius: 20px;
+      padding: 30px;
+      max-width: 900px;
+      width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
+      box-shadow: 0 0 50px rgba(168, 85, 247, 0.5);
+    }
+    
+    .store-content h2 {
+      text-align: center;
+      color: #a855f7;
+      font-size: 32px;
+      margin-bottom: 10px;
+      text-shadow: 0 0 20px #a855f7;
+    }
+    
+    .store-orbs {
+      text-align: center;
+      color: #fff;
+      font-size: 24px;
+      margin-bottom: 20px;
+      background: rgba(168, 85, 247, 0.2);
+      padding: 10px;
+      border-radius: 10px;
+    }
+    
+    .store-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+    
+    .store-section-header {
+      grid-column: 1 / -1;
+      color: #fbbf24;
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 10px;
+      padding: 10px;
+      border-bottom: 2px solid #fbbf24;
+    }
+    
+    .store-item {
+      background: rgba(0,0,0,0.5);
+      border: 2px solid #333;
+      border-radius: 12px;
+      padding: 15px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .store-item.available {
+      border-color: #a855f7;
+    }
+    
+    .store-item.available:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #a855f7;
+      background: rgba(168, 85, 247, 0.2);
+    }
+    
+    .store-item.locked {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+    
+    .store-item .item-emoji {
+      font-size: 40px;
+      margin-bottom: 5px;
+    }
+    
+    .store-item .item-name {
+      color: #fff;
+      font-weight: bold;
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+    
+    .store-item .item-desc {
+      color: rgba(255,255,255,0.7);
+      font-size: 11px;
+      margin-bottom: 8px;
+    }
+    
+    .store-item .item-cost {
+      color: #ffd700;
+      font-weight: bold;
+      font-size: 14px;
+    }
+    
+    .store-close {
+      width: 100%;
+      padding: 15px;
+      font-size: 18px;
+      font-weight: bold;
+      background: #22c55e;
+      color: #000;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .store-close:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 20px #22c55e;
+    }
+    
+    .store-btn {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: rgba(168, 85, 247, 0.9);
+      border: 2px solid #a855f7;
+      color: #fff;
+      font-size: 24px;
+      cursor: pointer;
+      pointer-events: auto;
+      transition: all 0.3s;
+      z-index: 10000;
+      touch-action: manipulation;
+    }
+    
+    .store-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 20px #a855f7;
+    }
+    
+    /* Mobile Controls */
+    .mobile-controls {
+      position: absolute;
+      bottom: 100px;
+      right: 20px;
+      display: none; /* Hidden on desktop */
+      flex-direction: column;
+      gap: 15px;
+      z-index: 150;
+    }
+    
+    .mobile-btn {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 3px solid;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.2s;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+    
+    .mobile-ultimate {
+      background: rgba(0, 240, 255, 0.8);
+      border-color: #00f0ff;
+      color: #000;
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.5);
+    }
+    
+    .mobile-ultimate:active {
+      transform: scale(0.95);
+      background: #00f0ff;
+    }
+    
+    .mobile-store {
+      background: rgba(168, 85, 247, 0.8);
+      border-color: #a855f7;
+      color: #fff;
+      box-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+    }
+    
+    .mobile-store:active {
+      transform: scale(0.95);
+      background: #a855f7;
+    }
+    
+    .mobile-hint {
+      position: absolute;
+      bottom: 200px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.5);
+      font-size: 16px;
+      display: none;
+      pointer-events: none;
+      animation: pulse 2s infinite;
+    }
+    
+    /* Mobile responsive */
+    @media (max-width: 768px) {
+      .mobile-controls {
+        display: flex;
+      }
+      
+      .mobile-hint {
+        display: block;
+      }
+      
+      .title {
+        font-size: 40px;
+      }
+      
+      .subtitle {
+        font-size: 14px;
+      }
+      
+      .ghoul-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        max-width: 350px;
+      }
+      
+      .ghoul-card {
+        width: 70px;
+        height: 85px;
+      }
+      
+      .ghoul-card .emoji {
+        font-size: 28px;
+      }
+      
+      .btn {
+        padding: 15px 30px;
+        font-size: 18px;
+      }
+      
+      .hud {
+        font-size: 18px;
+      }
+      
+      .orb-meter {
+        width: 120px;
+        height: 25px;
+      }
+      
+      .tool-belt {
+        bottom: 20px;
+        gap: 8px;
+      }
+      
+      .tool-slot {
+        width: 45px;
+        height: 45px;
+        font-size: 22px;
+      }
+      
+      .store-btn, .audio-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 20px;
+      }
+      
+      .passive-info {
+        font-size: 10px;
+        bottom: 80px;
+      }
+      
+      /* Store mobile adjustments */
+      .store-content {
+        padding: 15px;
+        max-height: 85vh;
+      }
+      
+      .store-content h2 {
+        font-size: 24px;
+      }
+      
+      .store-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+      
+      .store-item {
+        padding: 10px;
+      }
+      
+      .store-item .item-emoji {
+        font-size: 32px;
+      }
+      
+      .store-item .item-name {
+        font-size: 12px;
+      }
+      
+      .store-item .item-desc {
+        font-size: 10px;
+      }
+      
+      /* Codex mobile */
+      .codex-content {
+        grid-template-columns: 1fr;
+        padding: 10px;
+      }
+      
+      .codex-card {
+        padding: 15px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .title {
+        font-size: 32px;
+      }
+      
+      .ghoul-grid {
+        grid-template-columns: repeat(4, 1fr);
+        max-width: 300px;
+      }
+      
+      .ghoul-card {
+        width: 60px;
+        height: 75px;
+      }
+      
+      .ghoul-card .emoji {
+        font-size: 24px;
+      }
+      
+      .mobile-btn {
+        width: 70px;
+        height: 70px;
+        font-size: 12px;
+      }
+    }
+    
+    .passive-info {
+      position: absolute;
+      bottom: 140px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.6);
+      font-size: 12px;
+      text-align: center;
+      max-width: 300px;
+    }
+    
+    .tool-belt {
+      position: absolute;
+      bottom: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 12px;
+      z-index: 100;
+    }
+    
+    .tool-slot {
+      width: 55px;
+      height: 55px;
+      border: 3px solid rgba(255,255,255,0.3);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      background: rgba(0,0,0,0.6);
+      transition: all 0.3s;
+    }
+    
+    .tool-slot.equipped {
+      background: rgba(0,0,0,0.9);
+      box-shadow: 0 0 20px currentColor;
+      animation: pulse 1.5s infinite;
+      border-color: currentColor;
+    }
+    
+    .tool-slot.empty {
+      opacity: 0.4;
+      color: rgba(255,255,255,0.3);
+      border-style: dashed;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 15px currentColor; }
+      50% { transform: scale(1.08); box-shadow: 0 0 25px currentColor; }
+    }
+    
+    /* Codex Modal Styles */
+    .codex-modal {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.95);
+      z-index: 2000;
+      overflow-y: auto;
+      padding: 40px 20px;
+    }
+    
+    .codex-content {
+      max-width: 800px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 20px;
+    }
+    
+    .codex-card {
+      background: rgba(20, 20, 30, 0.9);
+      border: 2px solid #333;
+      border-radius: 15px;
+      padding: 20px;
+      transition: all 0.3s;
+    }
+    
+    .codex-card.unlocked {
+      border-color: #4ade80;
+      box-shadow: 0 0 20px rgba(74, 222, 128, 0.2);
+    }
+    
+    .codex-card.locked {
+      opacity: 0.5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 200px;
+    }
+    
+    .codex-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 15px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding-bottom: 10px;
+    }
+    
+    .codex-emoji {
+      font-size: 48px;
+    }
+    
+    .codex-title h3 {
+      color: #fff;
+      font-size: 20px;
+      margin: 0;
+    }
+    
+    .codex-sci {
+      color: rgba(255,255,255,0.6);
+      font-size: 12px;
+      font-style: italic;
+    }
+    
+    .codex-info p {
+      color: rgba(255,255,255,0.8);
+      font-size: 13px;
+      margin: 8px 0;
+      line-height: 1.4;
+    }
+    
+    .danger-moderate { color: #fbbf24; }
+    .danger-high { color: #f87171; }
+    .danger-very { color: #ef4444; }
+    .danger-low { color: #4ade80; }
+    
+    .codex-fact {
+      background: rgba(59, 130, 246, 0.2);
+      border-left: 3px solid #3b82f6;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 0 8px 8px 0;
+    }
+    
+    .codex-fun {
+      background: rgba(168, 85, 247, 0.2);
+      border-left: 3px solid #a855f7;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 0 8px 8px 0;
+      font-size: 12px;
+    }
+    
+    .codex-locked {
+      text-align: center;
+      color: rgba(255,255,255,0.4);
+    }
+    
+    .lock-icon {
+      font-size: 48px;
+      display: block;
+      margin-bottom: 10px;
+    }
+    
+    .codex-close {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      border: 2px solid rgba(255,255,255,0.3);
+      color: #fff;
+      font-size: 24px;
+      cursor: pointer;
+      transition: all 0.3s;
+      z-index: 2001;
+    }
+    
+    .codex-close:hover {
+      background: rgba(255,255,255,0.2);
+      transform: scale(1.1);
+    }
+    
+    .daily-challenge {
+      background: rgba(251, 191, 36, 0.15);
+      border: 2px solid #fbbf24;
+      border-radius: 12px;
+      padding: 15px 25px;
+      margin-bottom: 20px;
+      color: #fbbf24;
+      font-size: 14px;
+      text-align: center;
+      max-width: 400px;
+      animation: glow 2s infinite;
+    }
+    
+    @keyframes glow {
+      0%, 100% { box-shadow: 0 0 10px rgba(251, 191, 36, 0.3); }
+      50% { box-shadow: 0 0 25px rgba(251, 191, 36, 0.6); }
+    }
+    
+    .audio-btn {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.6);
+      border: 2px solid rgba(255,255,255,0.3);
+      color: #fff;
+      font-size: 24px;
+      cursor: pointer;
+      transition: all 0.3s;
+      z-index: 100;
+    }
+    
+    .audio-btn:hover {
+      background: rgba(0,240,255,0.3);
+      border-color: #00f0ff;
+      box-shadow: 0 0 15px #00f0ff;
+    }
+    
+    .audio-btn.muted {
+      opacity: 0.5;
+    }
+    
+    @keyframes fadeUp {
+      0% { opacity: 0; transform: translate(-50%, 20px); }
+      20% { opacity: 1; transform: translate(-50%, 0); }
+      80% { opacity: 1; transform: translate(-50%, 0); }
+      100% { opacity: 0; transform: translate(-50%, -20px); }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="gameCanvas"></canvas>
+  
+  <div id="ui">
+    <div class="hud">
+      <div>SCORE: <span id="score">0</span></div>
+      <div style="font-size: 14px; color: rgba(255,255,255,0.5); margin-top: 5px;">
+        DISTANCE: <span id="distance">0</span>m
+      </div>
+      <div id="hpDisplay" style="font-size: 18px; margin-top: 5px;">❤️❤️❤️</div>
+      <div id="intensityLevel" style="font-size: 12px; color: #00f0ff; margin-top: 3px; font-weight: bold;">
+        LVL 1
+      </div>
+    </div>
+    
+    <div class="ghoul-display" id="ghoulDisplay">
+      <span class="ghoul-emoji">👻</span>
+      <span class="ghoul-name">GOO GHOUL</span>
+    </div>
+    
+    <div class="orb-meter">
+      <div class="orb-fill" id="orbFill"></div>
+    </div>
+    <div class="orb-count" id="orbCount">💜 0</div>
+    
+    <div class="passive-info" id="passiveInfo">
+      Double orb magnet range
+    </div>
+    
+    <div class="tool-belt" id="toolBeltUI">
+      <div class="tool-slot empty">●</div>
+      <div class="tool-slot empty">●</div>
+      <div class="tool-slot empty">●</div>
+    </div>
+    
+    <button class="store-btn" id="storeBtn" title="Open Store (S)">🛒</button>
+    <button class="audio-btn" id="audioBtn">🔊</button>
+    
+    <!-- Mobile Controls -->
+    <div class="mobile-controls" id="mobileControls">
+      <button class="mobile-btn mobile-ultimate" id="mobileUltimate">⚡ ULT</button>
+      <button class="mobile-btn mobile-store" id="mobileStore">🛒 STORE</button>
+    </div>
+    
+    <div class="mobile-hint" id="mobileHint">Tap & hold to fly up</div>
+  </div>
+  
+  <div class="start-screen" id="startScreen">
+    <div class="title">GOO RUNNER</div>
+    <div class="subtitle">Choose your ghoul. Cleanse the void.<br>Tap/Click and hold to rise, release to fall.</div>
+    
+    <div class="daily-challenge" id="dailyChallenge"></div>
+    
+    <div class="ghoul-grid" id="startGhoulGrid"></div>
+    
+    <button class="btn" id="startBtn">ENTER THE VOID</button>
+    <button class="btn" id="challengeBtn" style="margin-top: 10px; background: #fbbf24; font-size: 16px; padding: 12px 30px;">DAILY CHALLENGE</button>
+  </div>
+  
+  <div class="game-over-screen hidden" id="gameOverScreen">
+    <div class="title" style="font-size: 48px;">CLEANSING COMPLETE</div>
+    <div class="subtitle">
+      FINAL SCORE: <span id="finalScore">0</span><br>
+      DISTANCE: <span id="finalDistance">0</span>m<br><br>
+      <span id="unlockedGhoul"></span>
+    </div>
+    <button class="btn" id="restartBtn">CLEANSE AGAIN</button>
+    <button class="btn" id="codexBtn" style="margin-top: 15px; background: #fbbf24;">CODEX (0/8)</button>
+  </div>
+  
+  <div class="codex-modal hidden" id="codexModal">
+    <div class="codex-content" id="codexContent"></div>
+    <button class="codex-close" id="codexClose">✕</button>
+  </div>
+
+  <script src="audio.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
