@@ -35,7 +35,7 @@ export default function Footer() {
                 { name: "GARDEN", slug: "garden", domain: "https://www.gardenghoul.com" },
                 { name: "BEAUTY", slug: "beauty", domain: "https://www.beautyghoul.com" },
                 { name: "SCHOLAR", slug: "scholar" },
-                { name: "BABY", slug: "baby" },
+                { name: "TODDLER", slug: "toddler" },
               ].map((realm) => (
                 <li key={realm.slug}>
                   {realm.domain ? (
