@@ -3239,7 +3239,7 @@ function updateToolBeltUI() {
   equippedTools.forEach((tool, i) => {
     const slot = document.createElement('div');
     slot.className = 'tool-slot equipped';
-    slot.innerHTML = tool.emoji;
+    slot.textContent = tool.emoji;
     slot.style.borderColor = game.currentGhoul?.color || '#00f0ff';
     slot.style.color = game.currentGhoul?.color || '#00f0ff';
     belt.appendChild(slot);
@@ -3248,7 +3248,7 @@ function updateToolBeltUI() {
   for (let i = equippedTools.length; i < 3; i++) {
     const slot = document.createElement('div');
     slot.className = 'tool-slot empty';
-    slot.innerHTML = '●';
+    slot.textContent = '●';
     belt.appendChild(slot);
   }
 }
@@ -3575,7 +3575,7 @@ setTimeout(() => {
   if (audioBtn) {
     audioBtn.addEventListener('click', () => {
       const enabled = audio.toggle();
-      audioBtn.innerHTML = enabled ? '🔊' : '🔇';
+      audioBtn.textContent = enabled ? '🔊' : '🔇';
       audioBtn.classList.toggle('muted', !enabled);
     });
   }

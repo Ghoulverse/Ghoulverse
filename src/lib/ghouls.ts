@@ -18,6 +18,7 @@ export interface Ghoul {
   realm: string;
   ability: string;
   passive: string;
+  website?: string;
 }
 
 export const GHOULS: Ghoul[] = [
@@ -34,6 +35,7 @@ export const GHOULS: Ghoul[] = [
     products: ["All-Purpose Cleaner", "Surface Spray", "Floor Solution", "Heavy Duty Degreaser", "Goo Gone Pro"],
     stats: { power: 95, speed: 80, stealth: 70, intelligence: 85 },
     realm: "The Primordial Void",
+    website: "https://www.googhoul.com",
     ability: "Ectoplasmic Overload",
     passive: "Double orb magnet"
   },
@@ -50,6 +52,7 @@ export const GHOULS: Ghoul[] = [
     products: ["Aromatherapy Mist", "Calming Floor Wash", "Meditation Space Spray", "Essential Oil Diffuser Cleaner", "Zen Garden Maintenance"],
     stats: { power: 60, speed: 40, stealth: 90, intelligence: 95 },
     realm: "The Tranquil Gardens",
+    website: "https://www.zenghoul.com",
     ability: "Enlightenment",
     passive: "Slows enemy bullets"
   },
@@ -66,6 +69,7 @@ export const GHOULS: Ghoul[] = [
     products: ["Red Wine Remover", "Glitter Annihilator", "Confetti Dissolver", "Party Surface Wipes", "Morning-After Rescue Kit"],
     stats: { power: 85, speed: 100, stealth: 50, intelligence: 70 },
     realm: "The Neon District",
+    website: "https://www.partyghoul.com",
     ability: "Rave Mode",
     passive: "20% crit chance"
   },
@@ -82,6 +86,7 @@ export const GHOULS: Ghoul[] = [
     products: ["Heavy-Duty Hand Cleaner", "Concrete Dissolver", "Oil & Grease Destroyer", "Tool Restoration Kit", "Workshop Degreaser"],
     stats: { power: 100, speed: 60, stealth: 40, intelligence: 75 },
     realm: "The Industrial Wastes",
+    website: "https://www.tradieghoul.com",
     ability: "Demolition Day",
     passive: "Piercing shots"
   },
@@ -98,6 +103,7 @@ export const GHOULS: Ghoul[] = [
     products: ["Organic Pesticide", "Plant Rehydration Spray", "Soil pH Balancer", "Compost Accelerator", "Garden Tool Sanitizer"],
     stats: { power: 70, speed: 50, stealth: 85, intelligence: 90 },
     realm: "The Verdant Wilds",
+    website: "https://www.gardenghoul.com",
     ability: "Overgrowth",
     passive: "Health regen"
   },
@@ -114,8 +120,26 @@ export const GHOULS: Ghoul[] = [
     products: ["Makeup Brush Purifier", "Cosmetic Sanitizer", "Hair Tool Cleaner", "Vanity Surface Polish", "Beauty Organizer Spray"],
     stats: { power: 55, speed: 75, stealth: 95, intelligence: 80 },
     realm: "The Glamour Dimension",
+    website: "https://www.beautyghoul.com",
     ability: "Flawless",
     passive: "Dodge = shield"
+  },
+  {
+    id: "geek",
+    name: "GEEK GHOUL",
+    tagline: "The Digital Sanitizer",
+    description: "When the code compiles but the setup doesn't, GEEK GHOUL debugs your desk. No keyboard too greasy, no screen too smudged.",
+    longDescription: "GEEK GHOUL speaks in binary and breathes compressed air. Where others see a dusty keyboard, GEEK GHOUL sees a crime scene of Cheeto dust and finger oils. Every keycap is a suspect. Every pixel is evidence. GEEK GHOUL doesn't just clean your setup — GEEK GHOUL optimises it. The thermal paste is refreshed. The cables are managed. The RGB is spotless. In the realm of GEEK GHOUL, cleanliness is not next to godliness — cleanliness IS godliness, and godliness compiles without warnings.",
+    color: "cyan",
+    colorHex: "#00d4ff",
+    icon: "💻",
+    position: { x: 60, y: 15 },
+    products: ["Keyboard De-Greaser", "Screen Serum", "Cable Dust Repellent", "Gaming Setup Sanitizer", "Electronics Contact Cleaner"],
+    stats: { power: 65, speed: 85, stealth: 70, intelligence: 100 },
+    realm: "The Mainframe",
+    website: "https://www.geekghoul.com",
+    ability: "Debug Mode",
+    passive: "Auto-cleans on idle"
   },
   {
     id: "toddler",

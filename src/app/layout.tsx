@@ -4,13 +4,13 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "GHOULVERSE — The GHOUL Eats The GOO",
+  title: "GHOULVERSE — House of GHOUL",
   description:
-    "Enter the GHOULVERSE. A universe of 8 legendary ghouls, each mastering a realm of clean. Play GOO RUNNER, explore the lore, and discover the Original Consumer.",
-  keywords: ["GHOULVERSE", "GOO GHOUL", "game", "cleaning", "universe", "endless runner"],
+    "Welcome to the House of GHOUL. Five product brands, one universe, infinite clean. Explore PARTY, BEAUTY, GARDEN, ZEN, and TRADIE GHOUL. Play GOO RUNNER and discover the Original Consumer.",
+  keywords: ["GHOULVERSE", "House of GHOUL", "GOO GHOUL", "cleaning brands", "game", "universe", "endless runner"],
   openGraph: {
-    title: "GHOULVERSE",
-    description: "The GHOUL eats the GOO. Enter the universe.",
+    title: "GHOULVERSE — House of GHOUL",
+    description: "Five product brands. One house. Infinite clean. Enter the GHOULVERSE.",
     type: "website",
   },
 };
@@ -23,7 +23,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <meta httpEquiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-src 'self'; base-uri 'self'; form-action 'self';" />
         <meta name="referrer" content="strict-origin-when-cross-origin" />
         <meta name="permissions-policy" content="accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()" />
       </head>

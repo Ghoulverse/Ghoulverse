@@ -17,44 +17,52 @@ export default function Footer() {
               </span>
             </Link>
             <p className="text-text-dim text-sm leading-relaxed">
-              A universe where cleaning is an adventure. The GHOUL eats the GOO.
+              Five product brands. One universe. Infinite clean. The House of GHOUL.
             </p>
           </div>
 
-          {/* Realms */}
+          {/* House of GHOUL */}
           <div>
             <h4 className="font-cinzel font-semibold text-text-primary mb-4 tracking-wider text-sm">
-              REALMS
+              HOUSE OF GHOUL
             </h4>
             <ul className="space-y-2">
               {[
                 { name: "GOO", slug: "goo", domain: "https://www.googhoul.com" },
-                { name: "ZEN", slug: "zen", domain: "https://www.zenghoul.com" },
                 { name: "PARTY", slug: "party", domain: "https://www.partyghoul.com" },
-                { name: "TRADIE", slug: "tradie", domain: "https://www.tradieghoul.com" },
-                { name: "GARDEN", slug: "garden", domain: "https://www.gardenghoul.com" },
                 { name: "BEAUTY", slug: "beauty", domain: "https://www.beautyghoul.com" },
+                { name: "GARDEN", slug: "garden", domain: "https://www.gardenghoul.com" },
+                { name: "ZEN", slug: "zen", domain: "https://www.zenghoul.com" },
+                { name: "TRADIE", slug: "tradie", domain: "https://www.tradieghoul.com" },
+                { name: "GEEK", slug: "geek", domain: "https://www.geekghoul.com" },
+              ].map((realm) => (
+                <li key={realm.slug}>
+                  <a
+                    href={realm.domain}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-text-dim hover:text-cyan-glow transition-colors text-sm"
+                  >
+                    {realm.name} GHOUL
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <h4 className="font-cinzel font-semibold text-text-primary mt-6 mb-3 tracking-wider text-sm">
+              GAME REALMS
+            </h4>
+            <ul className="space-y-2">
+              {[
                 { name: "SCHOLAR", slug: "scholar" },
                 { name: "TODDLER", slug: "toddler" },
               ].map((realm) => (
                 <li key={realm.slug}>
-                  {realm.domain ? (
-                    <a
-                      href={realm.domain}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-text-dim hover:text-cyan-glow transition-colors text-sm"
-                    >
-                      {realm.name} GHOUL
-                    </a>
-                  ) : (
-                    <Link
-                      href={`/ghouls/${realm.slug}/`}
-                      className="text-text-dim hover:text-cyan-glow transition-colors text-sm"
-                    >
-                      {realm.name} GHOUL
-                    </Link>
-                  )}
+                  <Link
+                    href={`/ghouls/${realm.slug}/`}
+                    className="text-text-dim hover:text-cyan-glow transition-colors text-sm"
+                  >
+                    {realm.name} GHOUL
+                  </Link>
                 </li>
               ))}
             </ul>

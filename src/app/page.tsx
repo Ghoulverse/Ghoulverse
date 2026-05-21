@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { GHOULS } from "@/lib/ghouls";
-import { ArrowRight, Sparkles, Skull, Droplets, Gamepad2 } from "lucide-react";
+import { ArrowRight, Sparkles, Skull, Droplets, Gamepad2, ExternalLink } from "lucide-react";
 
 export default function HomePage() {
   const gooGhoul = GHOULS[0];
@@ -63,12 +63,12 @@ export default function HomePage() {
           </h1>
 
           <p className="text-text-muted text-lg md:text-2xl font-light tracking-widest uppercase mb-4 animate-slide-up delay-200">
-            The GHOUL Eats The GOO
+            House of GHOUL
           </p>
 
           <p className="text-text-dim text-base md:text-lg max-w-2xl mx-auto mb-10 leading-relaxed animate-slide-up delay-300">
-            Eight realms. One universe. Infinite mess. Enter the GHOULVERSE and discover
-            the legendary ghouls who turn chaos into order — one stain at a time.
+            Six product brands. One universe. Infinite clean. The House of GHOUL brings
+            supernatural cleaning to every realm — from industrial workshops to digital mainframes.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 animate-slide-up delay-400">
@@ -96,16 +96,16 @@ export default function HomePage() {
             <div className="text-center">
               <div className="flex items-center justify-center gap-2 mb-1">
                 <Skull className="w-4 h-4 text-cyan-glow" />
-                <span className="font-creepster text-3xl md:text-4xl text-cyan-glow">8</span>
+                <span className="font-creepster text-3xl md:text-4xl text-cyan-glow">6</span>
               </div>
-              <p className="text-text-dim text-xs uppercase tracking-wider">Ghoul Realms</p>
+              <p className="text-text-dim text-xs uppercase tracking-wider">Product Lines</p>
             </div>
             <div className="text-center">
               <div className="flex items-center justify-center gap-2 mb-1">
                 <Droplets className="w-4 h-4 text-purple-glow" />
-                <span className="font-creepster text-3xl md:text-4xl text-purple-glow">&infin;</span>
+                <span className="font-creepster text-3xl md:text-4xl text-purple-glow">8</span>
               </div>
-              <p className="text-text-dim text-xs uppercase tracking-wider">Goo Consumed</p>
+              <p className="text-text-dim text-xs uppercase tracking-wider">Ghoul Realms</p>
             </div>
             <div className="text-center">
               <div className="flex items-center justify-center gap-2 mb-1">
@@ -202,50 +202,78 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <span className="text-purple-glow text-xs font-semibold tracking-[0.2em] uppercase mb-3 block">
-              The Extended Universe
+              The House of GHOUL
             </span>
             <h2 className="font-creepster text-4xl md:text-6xl gradient-text mb-4">
-              Seven More Realms
+              Five Product Brands
             </h2>
             <p className="text-text-muted max-w-2xl mx-auto">
-              GOO GHOUL was only the beginning. Across the GHOULVERSE, seven other entities
-              have risen to claim their domains.
+              Each brand is a specialized entity with its own formulations, identity, and domain.
+              Together they form the House of GHOUL portfolio.
             </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {otherGhouls.map((ghoul, i) => (
-              <Link
-                key={ghoul.id}
-                href={`/ghouls/${ghoul.id}/`}
-                className="group glass rounded-xl p-6 transition-all duration-300 hover:-translate-y-2 hover:border-cyan-glow/30 relative overflow-hidden"
-                style={{
-                  animationDelay: `${i * 100}ms`,
-                }}
-              >
+            {otherGhouls.map((ghoul, i) => {
+              const card = (
                 <div
-                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                  style={{
-                    background: `radial-gradient(circle at 50% 0%, ${ghoul.colorHex}20, transparent 70%)`,
-                  }}
-                />
-                <div className="relative z-10">
-                  <div className="text-4xl mb-4">{ghoul.icon}</div>
-                  <h3 className="font-cinzel font-bold text-lg text-text-primary mb-1 group-hover:text-cyan-glow transition-colors">
-                    {ghoul.name}
-                  </h3>
-                  <p className="text-text-dim text-xs uppercase tracking-wider mb-3">
-                    {ghoul.realm}
-                  </p>
-                  <p className="text-text-muted text-sm leading-relaxed line-clamp-3">
-                    {ghoul.description}
-                  </p>
-                  <div className="mt-4 flex items-center gap-2 text-cyan-glow text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
-                    Explore Realm <ArrowRight className="w-3 h-3" />
+                  className="group glass rounded-xl p-6 transition-all duration-300 hover:-translate-y-2 hover:border-cyan-glow/30 relative overflow-hidden h-full"
+                  style={{ animationDelay: `${i * 100}ms` }}
+                >
+                  <div
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                    style={{
+                      background: `radial-gradient(circle at 50% 0%, ${ghoul.colorHex}20, transparent 70%)`,
+                    }}
+                  />
+                  <div className="relative z-10">
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="text-4xl">{ghoul.icon}</div>
+                      {ghoul.website && (
+                        <span className="text-[10px] uppercase tracking-wider px-2 py-1 rounded-full border border-cyan-glow/20 text-cyan-glow/70">
+                          Shop
+                        </span>
+                      )}
+                    </div>
+                    <h3 className="font-cinzel font-bold text-lg text-text-primary mb-1 group-hover:text-cyan-glow transition-colors">
+                      {ghoul.name}
+                    </h3>
+                    <p className="text-text-dim text-xs uppercase tracking-wider mb-3">
+                      {ghoul.realm}
+                    </p>
+                    <p className="text-text-muted text-sm leading-relaxed line-clamp-3">
+                      {ghoul.description}
+                    </p>
+                    <div className="mt-4 flex items-center gap-2 text-cyan-glow text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+                      {ghoul.website ? (
+                        <>Visit Site <ExternalLink className="w-3 h-3" /></>
+                      ) : (
+                        <>Explore Realm <ArrowRight className="w-3 h-3" /></>
+                      )}
+                    </div>
                   </div>
                 </div>
-              </Link>
-            ))}
+              );
+              return ghoul.website ? (
+                <a
+                  key={ghoul.id}
+                  href={ghoul.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block"
+                >
+                  {card}
+                </a>
+              ) : (
+                <Link
+                  key={ghoul.id}
+                  href={`/ghouls/${ghoul.id}/`}
+                  className="block"
+                >
+                  {card}
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>

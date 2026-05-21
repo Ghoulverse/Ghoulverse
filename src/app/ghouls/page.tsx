@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { GHOULS } from "@/lib/ghouls";
-import { ArrowRight, MapPin } from "lucide-react";
+import { ArrowRight, MapPin, ExternalLink } from "lucide-react";
 
 export default function GhoulsPage() {
   const gooGhoul = GHOULS[0];
@@ -14,14 +14,14 @@ export default function GhoulsPage() {
         {/* Header */}
         <div className="text-center mb-16">
           <span className="text-cyan-glow text-xs font-semibold tracking-[0.2em] uppercase mb-3 block">
-            The Map of Realms
+            The House of GHOUL
           </span>
           <h1 className="font-creepster text-5xl md:text-7xl gradient-text mb-4">
             The Constellation
           </h1>
           <p className="text-text-muted max-w-2xl mx-auto">
-            Eight nodes of power scattered across the GHOULVERSE. GOO GHOUL sits at the
-            center — the gravitational heart from which all other realms orbit.
+            Five product brands and three game realms orbit the primordial heart of GOO GHOUL.
+            Explore each entity and visit their dedicated character sites.
           </p>
         </div>
 
@@ -197,7 +197,7 @@ export default function GhoulsPage() {
                   ))}
                 </div>
                 <a
-                  href="https://www.googhoul.com"
+                  href={gooGhoul.website}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-cyan-glow hover:text-magenta-glow transition-colors font-medium"
@@ -224,52 +224,80 @@ export default function GhoulsPage() {
 
         {/* Grid of other ghouls */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {otherGhouls.map((ghoul) => (
-            <Link
-              key={ghoul.id}
-              href={`/ghouls/${ghoul.id}/`}
-              className="group glass rounded-xl overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:border-cyan-glow/20"
-            >
-              <div
-                className="h-32 relative flex items-center justify-center"
-                style={{
-                  background: `linear-gradient(135deg, ${ghoul.colorHex}15, ${ghoul.colorHex}05)`,
-                }}
-              >
+          {otherGhouls.map((ghoul) => {
+            const card = (
+              <div className="group glass rounded-xl overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:border-cyan-glow/20 h-full flex flex-col">
                 <div
-                  className="absolute inset-0 opacity-30"
+                  className="h-32 relative flex items-center justify-center"
                   style={{
-                    background: `radial-gradient(circle at center, ${ghoul.colorHex}30, transparent 70%)`,
+                    background: `linear-gradient(135deg, ${ghoul.colorHex}15, ${ghoul.colorHex}05)`,
                   }}
-                />
-                <span className="relative text-6xl animate-float">{ghoul.icon}</span>
-              </div>
-              <div className="p-6">
-                <div className="flex items-center justify-between mb-2">
-                  <h3 className="font-cinzel font-bold text-lg text-text-primary group-hover:text-cyan-glow transition-colors">
-                    {ghoul.name}
-                  </h3>
-                  <MapPin className="w-4 h-4 text-text-dim" />
+                >
+                  <div
+                    className="absolute inset-0 opacity-30"
+                    style={{
+                      background: `radial-gradient(circle at center, ${ghoul.colorHex}30, transparent 70%)`,
+                    }}
+                  />
+                  <span className="relative text-6xl animate-float">{ghoul.icon}</span>
+                  {ghoul.website && (
+                    <div className="absolute top-3 right-3">
+                      <span className="text-[10px] uppercase tracking-wider px-2 py-1 rounded-full border border-cyan-glow/20 text-cyan-glow/70 bg-abyss/50">
+                        Shop
+                      </span>
+                    </div>
+                  )}
                 </div>
-                <p className="text-text-dim text-xs uppercase tracking-wider mb-3">
-                  {ghoul.realm}
-                </p>
-                <p className="text-text-muted text-sm leading-relaxed mb-4 line-clamp-3">
-                  {ghoul.description}
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {ghoul.products.slice(0, 2).map((p) => (
-                    <span
-                      key={p}
-                      className="px-2 py-0.5 rounded-full text-[10px] border border-text-dim/20 text-text-dim"
-                    >
-                      {p}
-                    </span>
-                  ))}
+                <div className="p-6 flex-1 flex flex-col">
+                  <div className="flex items-center justify-between mb-2">
+                    <h3 className="font-cinzel font-bold text-lg text-text-primary group-hover:text-cyan-glow transition-colors">
+                      {ghoul.name}
+                    </h3>
+                    {ghoul.website ? (
+                      <ExternalLink className="w-4 h-4 text-text-dim" />
+                    ) : (
+                      <MapPin className="w-4 h-4 text-text-dim" />
+                    )}
+                  </div>
+                  <p className="text-text-dim text-xs uppercase tracking-wider mb-3">
+                    {ghoul.realm}
+                  </p>
+                  <p className="text-text-muted text-sm leading-relaxed mb-4 line-clamp-3 flex-1">
+                    {ghoul.description}
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {ghoul.products.slice(0, 2).map((p) => (
+                      <span
+                        key={p}
+                        className="px-2 py-0.5 rounded-full text-[10px] border border-text-dim/20 text-text-dim"
+                      >
+                        {p}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
-            </Link>
-          ))}
+            );
+            return ghoul.website ? (
+              <a
+                key={ghoul.id}
+                href={ghoul.website}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block"
+              >
+                {card}
+              </a>
+            ) : (
+              <Link
+                key={ghoul.id}
+                href={`/ghouls/${ghoul.id}/`}
+                className="block"
+              >
+                {card}
+              </Link>
+            );
+          })}
         </div>
       </div>
     </div>

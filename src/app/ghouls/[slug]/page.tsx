@@ -20,14 +20,7 @@ export default async function GhoulPage({ params }: Props) {
 
   const isGoo = ghoul.id === "goo";
 
-  const ghoulDomains: Record<string, string> = {
-    beauty: "https://www.beautyghoul.com",
-    garden: "https://www.gardenghoul.com",
-    zen: "https://www.zenghoul.com",
-    tradie: "https://www.tradieghoul.com",
-    party: "https://www.partyghoul.com",
-  };
-  const hasDomain = ghoul.id in ghoulDomains;
+  const hasDomain = !!ghoul.website;
 
   const statIcons: Record<string, React.ReactNode> = {
     power: <Sword className="w-4 h-4" />,
@@ -175,7 +168,7 @@ export default async function GhoulPage({ params }: Props) {
           )}
           {hasDomain && (
             <a
-              href={ghoulDomains[ghoul.id]}
+              href={ghoul.website}
               target="_blank"
               rel="noopener noreferrer"
               className="glass-glow rounded-xl p-6 flex items-center gap-4 hover:border-cyan-glow/30 transition-colors"
