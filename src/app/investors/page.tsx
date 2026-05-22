@@ -23,6 +23,17 @@ import {
   User,
   Building2,
   MessageSquare,
+  Brain,
+  Beaker,
+  FlaskConical,
+  Microscope,
+  HeartPulse,
+  Leaf,
+  Bug,
+  Cpu,
+  ShieldCheck,
+  Wind,
+  Droplets,
 } from "lucide-react";
 
 /* ───────────────────────────  DATA  ─────────────────────────── */
@@ -496,6 +507,102 @@ function InvestorsContent() {
           </GlassCard>
         </section>
 
+        {/* ═══════ THE GHOUL THESIS ═══════ */}
+        <section className="mb-24">
+          <SectionHeading
+            icon={Brain}
+            title="The GHOUL Thesis"
+            subtitle="Every ghoul consumes a specific category of mess, struggle, and chaos. This is not cleaning as chore — it is cleaning as mission."
+          />
+          <div className="glass rounded-2xl p-8 md:p-12 relative overflow-hidden">
+            <div
+              className="absolute -top-20 -right-20 w-64 h-64 rounded-full opacity-10 blur-3xl pointer-events-none"
+              style={{ background: "radial-gradient(circle, rgba(255,0,255,0.3), transparent 70%)" }}
+            />
+            <div className="relative z-10">
+              <p className="text-text-primary text-lg md:text-xl leading-relaxed mb-8 text-center max-w-3xl mx-auto">
+                GHOULVERSE is built on a single, unifying thesis:{" "}
+                <span className="text-cyan-glow font-semibold">every mess has an enemy</span>. Each ghoul is a
+                specialised consumer of chaos — engineered through science, storytelling, and vertical-specific
+                innovation to eliminate threats that others tolerate.
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {[
+                  {
+                    ghoul: "PARTY GHOUL",
+                    eats: "Laced drugs, vomit bacteria, festival biohazards, stagnant air pathogens",
+                    color: "#ff00ff",
+                    icon: "🎉",
+                  },
+                  {
+                    ghoul: "TRADIE GHOUL",
+                    eats: "Concrete dust, oil slicks, rust flakes, industrial grease, worksite carcinogens",
+                    color: "#eab308",
+                    icon: "🔧",
+                  },
+                  {
+                    ghoul: "BEAUTY GHOUL",
+                    eats: "Cosmetic contamination, brush bacteria, expired serum buildup, vanity biofilm",
+                    color: "#ec4899",
+                    icon: "💄",
+                  },
+                  {
+                    ghoul: "GARDEN GHOUL",
+                    eats: "Pesticide residue, soil imbalance, plant disease vectors, compost pathogens",
+                    color: "#22c55e",
+                    icon: "🌿",
+                  },
+                  {
+                    ghoul: "GEEK GHOUL",
+                    eats: "Keyboard grease, screen bacteria, cable dust, electromagnetic particle buildup",
+                    color: "#00d4ff",
+                    icon: "💻",
+                  },
+                  {
+                    ghoul: "ZEN GHOUL",
+                    eats: "Mental clutter, air quality degradation, stress toxins, meditation space stagnation",
+                    color: "#a855f7",
+                    icon: "🧘",
+                  },
+                  {
+                    ghoul: "GOO GHOUL",
+                    eats: "The universal mess — grease, grime, entropy, and everything unclean",
+                    color: "#00f0ff",
+                    icon: "👻",
+                  },
+                  {
+                    ghoul: "SPORT GHOUL",
+                    eats: "Sweat-borne bacteria, locker room fungi, turf contaminants, gear odour vectors",
+                    color: "#f97316",
+                    icon: "🏆",
+                  },
+                  {
+                    ghoul: "GOO GOO",
+                    eats: "Nappy pathogens, bottle biofilms, puree stains, toy surface contaminants",
+                    color: "#3b82f6",
+                    icon: "🍼",
+                  },
+                ].map((item) => (
+                  <div
+                    key={item.ghoul}
+                    className="glass rounded-xl p-5 border-l-4"
+                    style={{ borderLeftColor: item.color }}
+                  >
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="text-xl">{item.icon}</span>
+                      <h4 className="font-cinzel font-bold text-sm text-text-primary">{item.ghoul}</h4>
+                    </div>
+                    <p className="text-text-muted text-xs leading-relaxed">
+                      <span className="text-text-dim uppercase tracking-wider text-[10px]">Consumes:</span>{" "}
+                      {item.eats}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* ═══════ PERSONALIZED GHoul SECTION ═══════ */}
         {fromGhoul && fromGhoul.id !== "ghoulverse" && (
           <section className="mb-24">
@@ -651,6 +758,464 @@ function InvestorsContent() {
           </div>
         </section>
 
+        {/* ═══════ INNOVATION & SCIENCE ═══════ */}
+        <section className="mb-24">
+          <SectionHeading
+            icon={Beaker}
+            title="Innovation & Science"
+            subtitle="Each vertical is a laboratory. We don't follow category conventions — we engineer category-specific solutions backed by formulation science, testing protocols, and vertical expertise."
+          />
+          <div className="space-y-6">
+            {/* PARTY GHOUL */}
+            <div className="glass rounded-2xl overflow-hidden">
+              <div className="grid grid-cols-1 md:grid-cols-3">
+                <div
+                  className="p-6 md:p-8"
+                  style={{ background: "linear-gradient(135deg, #ff00ff15, #ff00ff05)" }}
+                >
+                  <div className="flex items-center gap-3 mb-4">
+                    <span className="text-4xl">🎉</span>
+                    <div>
+                      <h3 className="font-cinzel font-bold text-lg text-text-primary">PARTY GHOUL</h3>
+                      <p className="text-text-dim text-xs">Festival Safety & Biohazard Response</p>
+                    </div>
+                  </div>
+                  <div className="space-y-3">
+                    <div>
+                      <p className="text-text-dim text-[10px] uppercase tracking-wider mb-1">Consumes</p>
+                      <p className="text-text-muted text-sm">
+                        Laced substances, vomit bacteria, portable-toilet biofilms, stagnant-air pathogens
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-text-dim text-[10px] uppercase tracking-wider mb-1">Science</p>
+                      <p className="text-text-muted text-sm">
+                        Enzymatic neutralisation + active oxygen release. pH shock destroys bacterial colonies
+                        in &lt;30 seconds.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="p-6 md:p-8 md:col-span-2">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <p className="text-text-dim text-[10px] uppercase tracking-wider mb-2">Innovation Pipeline</p>
+                      <ul className="space-y-2">
+                        {[
+                          "On-site drug purity testing kits",
+                          "Bacteria-eliminating surface wipes",
+                          "Air-pathogen neutralising mist",
+                          "Biohazard vomit encapsulator",
+                        ].map((item) => (
+                          <li key={item} className="flex items-start gap-2 text-text-muted text-sm">
+                            <FlaskConical className="w-3.5 h-3.5 text-cyan-glow mt-0.5 shrink-0" />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div>
+                      <p className="text-text-dim text-[10px] uppercase tracking-wider mb-2">Safety Impact</p>
+                      <p className="text-text-muted text-sm leading-relaxed">
+                        Reduces festival-related illness by eliminating bacterial vectors before they spread.
+                        Drug-testing kits prevent overdose deaths through real-time adulterant detection.
+                      </p>
+                      <div className="mt-3 flex items-center gap-2">
+                        <ShieldCheck className="w-4 h-4 text-green-400" />
+                        <span className="text-green-400 text-xs font-semibold">Prevents harm, saves lives</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* TRADIE GHOUL */}
+            <div className="glass rounded-2xl overflow-hidden">
+              <div className="grid grid-cols-1 md:grid-cols-3">
+                <div
+                  className="p-6 md:p-8"
+                  style={{ background: "linear-gradient(135deg, #eab30815, #eab30805)" }}
+                >
+                  <div className="flex items-center gap-3 mb-4">
+                    <span className="text-4xl">🔧</span>
+                    <div>
+                      <h3 className="font-cinzel font-bold text-lg text-text-primary">TRADIE GHOUL</h3>
+                      <p className="text-text-dim text-xs">Industrial Hygiene & Workplace Safety</p>
+                    </div>
+                  </div>
+                  <div className="space-y-3">
+                    <div>
+                      <p className="text-text-dim text-[10px] uppercase tracking-wider mb-1">Consumes</p>
+                      <p className="text-text-muted text-sm">
+                        Concrete dust, oil slicks, rust flakes, industrial grease, worksite carcinogens
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-text-dim text-[10px] uppercase tracking-wider mb-1">Science</p>
+                      <p className="text-text-muted text-sm">
+                        Heavy-duty surfactant chemistry + chelating agents. Dissolves silica dust and heavy oils
+                        without abrasive damage to skin or surfaces.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="p-6 md:p-8 md:col-span-2">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <p className="text-text-dim text-[10px] uppercase tracking-wider mb-2">Innovation Pipeline</p>
+                      <ul className="space-y-2">
+                        {[
+                          "Silica-dust encapsulating hand wash",
+                          "Biodegradable degreasing solvent",
+                          "Rust-inhibiting tool dip",
+                          "PPE-compatible surface sanitiser",
+                        ].map((item) => (
+                          <li key={item} className="flex items-start gap-2 text-text-muted text-sm">
+                            <FlaskConical className="w-3.5 h-3.5 text-cyan-glow mt-0.5 shrink-0" />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div>
+                      <p className="text-text-dim text-[10px] uppercase tracking-wider mb-2">Safety Impact</p>
+                      <p className="text-text-muted text-sm leading-relaxed">
+                        Reduces silicosis risk through silica-dust neutralisation. Prevents dermatitis and
+                        chemical burns with skin-safe heavy-duty formulations.
+                      </p>
+                      <div className="mt-3 flex items-center gap-2">
+                        <ShieldCheck className="w-4 h-4 text-green-400" />
+                        <span className="text-green-400 text-xs font-semibold">Protects workers, reduces claims</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* BEAUTY GHOUL */}
+            <div className="glass rounded-2xl overflow-hidden">
+              <div className="grid grid-cols-1 md:grid-cols-3">
+                <div
+                  className="p-6 md:p-8"
+                  style={{ background: "linear-gradient(135deg, #ec489915, #ec489905)" }}
+                >
+                  <div className="flex items-center gap-3 mb-4">
+                    <span className="text-4xl">💄</span>
+                    <div>
+                      <h3 className="font-cinzel font-bold text-lg text-text-primary">BEAUTY GHOUL</h3>
+                      <p className="text-text-dim text-xs">Cosmetic Sanitation & Dermal Safety</p>
+                    </div>
+                  </div>
+                  <div className="space-y-3">
+                    <div>
+                      <p className="text-text-dim text-[10px] uppercase tracking-wider mb-1">Consumes</p>
+                      <p className="text-text-muted text-sm">
+                        Cosmetic contamination, brush bacteria, expired serum buildup, vanity biofilm
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-text-dim text-[10px] uppercase tracking-wider mb-1">Science</p>
+                      <p className="text-text-muted text-sm">
+                        Antimicrobial peptide formulations + UV-C brush sanitation. pH-balanced to protect
+                        skin barrier while eliminating <em>Staphylococcus aureus</em> and <em>P. acnes</em>.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="p-6 md:p-8 md:col-span-2">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <p className="text-text-dim text-[10px] uppercase tracking-wider mb-2">Innovation Pipeline</p>
+                      <ul className="space-y-2">
+                        {[
+                          "UV-C makeup brush sanitising station",
+                          "Antimicrobial vanity surface spray",
+                          "pH-balanced tool cleanser",
+                          "Cosmetic expiry tracking app",
+                        ].map((item) => (
+                          <li key={item} className="flex items-start gap-2 text-text-muted text-sm">
+                            <FlaskConical className="w-3.5 h-3.5 text-cyan-glow mt-0.5 shrink-0" />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div>
+                      <p className="text-text-dim text-[10px] uppercase tracking-wider mb-2">Safety Impact</p>
+                      <p className="text-text-muted text-sm leading-relaxed">
+                        Prevents skin infections and breakouts caused by contaminated brushes. Reduces
+                        exposure to expired actives that degrade into irritants.
+                      </p>
+                      <div className="mt-3 flex items-center gap-2">
+                        <ShieldCheck className="w-4 h-4 text-green-400" />
+                        <span className="text-green-400 text-xs font-semibold">Dermal health, infection prevention</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* GARDEN GHOUL */}
+            <div className="glass rounded-2xl overflow-hidden">
+              <div className="grid grid-cols-1 md:grid-cols-3">
+                <div
+                  className="p-6 md:p-8"
+                  style={{ background: "linear-gradient(135deg, #22c55e15, #22c55e05)" }}
+                >
+                  <div className="flex items-center gap-3 mb-4">
+                    <span className="text-4xl">🌿</span>
+                    <div>
+                      <h3 className="font-cinzel font-bold text-lg text-text-primary">GARDEN GHOUL</h3>
+                      <p className="text-text-dim text-xs">Agro-Biology & Soil Health</p>
+                    </div>
+                  </div>
+                  <div className="space-y-3">
+                    <div>
+                      <p className="text-text-dim text-[10px] uppercase tracking-wider mb-1">Consumes</p>
+                      <p className="text-text-muted text-sm">
+                        Pesticide residue, soil imbalance, plant disease vectors, compost pathogens
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-text-dim text-[10px] uppercase tracking-wider mb-1">Science</p>
+                      <p className="text-text-muted text-sm">
+                        Beneficial microbial inoculants + organic chelation. Restores mycorrhizal networks
+                        while breaking down synthetic pesticide residues into benign compounds.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="p-6 md:p-8 md:col-span-2">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <p className="text-text-dim text-[10px] uppercase tracking-wider mb-2">Innovation Pipeline</p>
+                      <ul className="space-y-2">
+                        {[
+                          "Mycorrhizal soil restoration pellets",
+                          "Organic pesticide residue breaker",
+                          "Compost-pathogen thermophilic booster",
+                          "Plant-disease early-detection spray",
+                        ].map((item) => (
+                          <li key={item} className="flex items-start gap-2 text-text-muted text-sm">
+                            <FlaskConical className="w-3.5 h-3.5 text-cyan-glow mt-0.5 shrink-0" />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div>
+                      <p className="text-text-dim text-[10px] uppercase tracking-wider mb-2">Safety Impact</p>
+                      <p className="text-text-muted text-sm leading-relaxed">
+                        Eliminates synthetic pesticide runoff into groundwater. Restores soil microbiome
+                        for safer, more nutritious home-grown food.
+                      </p>
+                      <div className="mt-3 flex items-center gap-2">
+                        <ShieldCheck className="w-4 h-4 text-green-400" />
+                        <span className="text-green-400 text-xs font-semibold">Eco-safe, food-safe agriculture</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* GEEK GHOUL */}
+            <div className="glass rounded-2xl overflow-hidden">
+              <div className="grid grid-cols-1 md:grid-cols-3">
+                <div
+                  className="p-6 md:p-8"
+                  style={{ background: "linear-gradient(135deg, #00d4ff15, #00d4ff05)" }}
+                >
+                  <div className="flex items-center gap-3 mb-4">
+                    <span className="text-4xl">💻</span>
+                    <div>
+                      <h3 className="font-cinzel font-bold text-lg text-text-primary">GEEK GHOUL</h3>
+                      <p className="text-text-dim text-xs">Tech Hygiene & Digital Wellness</p>
+                    </div>
+                  </div>
+                  <div className="space-y-3">
+                    <div>
+                      <p className="text-text-dim text-[10px] uppercase tracking-wider mb-1">Consumes</p>
+                      <p className="text-text-muted text-sm">
+                        Keyboard grease, screen bacteria, cable dust, electromagnetic particle buildup
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-text-dim text-[10px] uppercase tracking-wider mb-1">Science</p>
+                      <p className="text-text-muted text-sm">
+                        Isopropyl-alternative electronics cleaner + anti-static polymer coating.
+                        Non-conductive, non-corrosive, safe for PCB contacts and display coatings.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="p-6 md:p-8 md:col-span-2">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <p className="text-text-dim text-[10px] uppercase tracking-wider mb-2">Innovation Pipeline</p>
+                      <ul className="space-y-2">
+                        {[
+                          "Electronics-safe anti-bacterial serum",
+                          "Anti-static cable dust repellent",
+                          "Thermal-paste-safe contact cleaner",
+                          "Blue-light filtering screen wash",
+                        ].map((item) => (
+                          <li key={item} className="flex items-start gap-2 text-text-muted text-sm">
+                            <FlaskConical className="w-3.5 h-3.5 text-cyan-glow mt-0.5 shrink-0" />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div>
+                      <p className="text-text-dim text-[10px] uppercase tracking-wider mb-2">Safety Impact</p>
+                      <p className="text-text-muted text-sm leading-relaxed">
+                        Reduces keyboard-borne illness transmission in shared workspaces. Protects
+                        sensitive electronics from corrosion caused by conventional cleaners.
+                      </p>
+                      <div className="mt-3 flex items-center gap-2">
+                        <ShieldCheck className="w-4 h-4 text-green-400" />
+                        <span className="text-green-400 text-xs font-semibold">Tech-safe, health-safe computing</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* ZEN GHOUL */}
+            <div className="glass rounded-2xl overflow-hidden">
+              <div className="grid grid-cols-1 md:grid-cols-3">
+                <div
+                  className="p-6 md:p-8"
+                  style={{ background: "linear-gradient(135deg, #a855f715, #a855f705)" }}
+                >
+                  <div className="flex items-center gap-3 mb-4">
+                    <span className="text-4xl">🧘</span>
+                    <div>
+                      <h3 className="font-cinzel font-bold text-lg text-text-primary">ZEN GHOUL</h3>
+                      <p className="text-text-dim text-xs">Atmospheric Wellness & Mind-Body Safety</p>
+                    </div>
+                  </div>
+                  <div className="space-y-3">
+                    <div>
+                      <p className="text-text-dim text-[10px] uppercase tracking-wider mb-1">Consumes</p>
+                      <p className="text-text-muted text-sm">
+                        Mental clutter, air quality degradation, stress toxins, meditation space stagnation
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-text-dim text-[10px] uppercase tracking-wider mb-1">Science</p>
+                      <p className="text-text-muted text-sm">
+                        Adaptogenic aromatherapy + negative-ion generation. Terpene-based formulations
+                        clinically shown to reduce cortisol and improve HRV during mindfulness practice.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="p-6 md:p-8 md:col-span-2">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <p className="text-text-dim text-[10px] uppercase tracking-wider mb-2">Innovation Pipeline</p>
+                      <ul className="space-y-2">
+                        {[
+                          "Cortisol-reducing room mist",
+                          "Negative-ion meditation space diffuser",
+                          "Biophilic air-purifying plant tonic",
+                          "Sleep-quality enhancing linen spray",
+                        ].map((item) => (
+                          <li key={item} className="flex items-start gap-2 text-text-muted text-sm">
+                            <FlaskConical className="w-3.5 h-3.5 text-cyan-glow mt-0.5 shrink-0" />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div>
+                      <p className="text-text-dim text-[10px] uppercase tracking-wider mb-2">Safety Impact</p>
+                      <p className="text-text-muted text-sm leading-relaxed">
+                        Improves indoor air quality by neutralising VOCs and particulates. Reduces
+                        stress-related cortisol spikes, supporting cardiovascular and immune health.
+                      </p>
+                      <div className="mt-3 flex items-center gap-2">
+                        <ShieldCheck className="w-4 h-4 text-green-400" />
+                        <span className="text-green-400 text-xs font-semibold">Mental & physical wellbeing</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* GOO GHOUL */}
+            <div className="glass rounded-2xl overflow-hidden">
+              <div className="grid grid-cols-1 md:grid-cols-3">
+                <div
+                  className="p-6 md:p-8"
+                  style={{ background: "linear-gradient(135deg, #00f0ff15, #00f0ff05)" }}
+                >
+                  <div className="flex items-center gap-3 mb-4">
+                    <span className="text-4xl">👻</span>
+                    <div>
+                      <h3 className="font-cinzel font-bold text-lg text-text-primary">GOO GHOUL</h3>
+                      <p className="text-text-dim text-xs">Universal Cleaning & Entropy Reversal</p>
+                    </div>
+                  </div>
+                  <div className="space-y-3">
+                    <div>
+                      <p className="text-text-dim text-[10px] uppercase tracking-wider mb-1">Consumes</p>
+                      <p className="text-text-muted text-sm">
+                        The universal mess — grease, grime, entropy, and everything unclean across every surface
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-text-dim text-[10px] uppercase tracking-wider mb-1">Science</p>
+                      <p className="text-text-muted text-sm">
+                        Broad-spectrum enzymatic platform + surfactant synergy. One formulation adapts to
+                        pH needs of glass, stone, wood, and metal through smart-buffer technology.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="p-6 md:p-8 md:col-span-2">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <p className="text-text-dim text-[10px] uppercase tracking-wider mb-2">Innovation Pipeline</p>
+                      <ul className="space-y-2">
+                        {[
+                          "Smart-buffer all-surface cleaner",
+                          "Enzymatic grease digester",
+                          "Anti-bacterial floor wash concentrate",
+                          "Heavy-duty degreaser foam",
+                        ].map((item) => (
+                          <li key={item} className="flex items-start gap-2 text-text-muted text-sm">
+                            <FlaskConical className="w-3.5 h-3.5 text-cyan-glow mt-0.5 shrink-0" />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div>
+                      <p className="text-text-dim text-[10px] uppercase tracking-wider mb-2">Safety Impact</p>
+                      <p className="text-text-muted text-sm leading-relaxed">
+                        Replaces harsh chemical cleaners with biodegradable enzymatic alternatives.
+                        Reduces household chemical exposure, especially for children and pets.
+                      </p>
+                      <div className="mt-3 flex items-center gap-2">
+                        <ShieldCheck className="w-4 h-4 text-green-400" />
+                        <span className="text-green-400 text-xs font-semibold">Non-toxic, biodegradable, universal</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* ═══════ MARKET OPPORTUNITY ═══════ */}
         <section className="mb-24">
           <SectionHeading
@@ -702,6 +1267,90 @@ function InvestorsContent() {
           </div>
         </section>
 
+        {/* ═══════ SAFETY & TECHNOLOGY MISSION ═══════ */}
+        <section className="mb-24">
+          <SectionHeading
+            icon={ShieldCheck}
+            title="Safety & Technology Mission"
+            subtitle="GHOULVERSE exists to make the physical world measurably better, safer, and more technologically rich."
+          />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <GlassCard>
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-xl bg-cyan-glow/10 flex items-center justify-center shrink-0">
+                  <HeartPulse className="w-6 h-6 text-cyan-glow" />
+                </div>
+                <div>
+                  <h4 className="font-cinzel font-bold text-lg text-text-primary mb-2">Physical Safety First</h4>
+                  <p className="text-text-muted text-sm leading-relaxed">
+                    Every product formulation is designed with a safety hierarchy: protect the human first,
+                    then the surface, then the environment. From PARTY GHOUL's drug-testing kits that prevent
+                    overdose deaths, to TRADIE GHOUL's silica-dust neutralisers that prevent silicosis —
+                    safety is not a feature, it is the foundation.
+                  </p>
+                </div>
+              </div>
+            </GlassCard>
+            <GlassCard>
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-xl bg-purple-glow/10 flex items-center justify-center shrink-0">
+                  <Cpu className="w-6 h-6 text-purple-glow" />
+                </div>
+                <div>
+                  <h4 className="font-cinzel font-bold text-lg text-text-primary mb-2">Technology Enrichment</h4>
+                  <p className="text-text-muted text-sm leading-relaxed">
+                    We embed technology into every vertical: QR-linked safety data sheets, app-integrated
+                    testing protocols, smart dispensers that track usage and reorder. GEEK GHOUL leads our
+                    tech-hardware pipeline with electronics-safe formulations that protect the devices
+                    people depend on.
+                  </p>
+                </div>
+              </div>
+            </GlassCard>
+            <GlassCard>
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-xl bg-green-500/10 flex items-center justify-center shrink-0">
+                  <Leaf className="w-6 h-6 text-green-400" />
+                </div>
+                <div>
+                  <h4 className="font-cinzel font-bold text-lg text-text-primary mb-2">Environmental Responsibility</h4>
+                  <p className="text-text-muted text-sm leading-relaxed">
+                    Biodegradable enzymatic platforms replace harsh petrochemical solvents. GARDEN GHOUL's
+                    mycorrhizal restoration technology rebuilds soil rather than depleting it. Every
+                    formulation is designed for circularity — effective today, harmless tomorrow.
+                  </p>
+                </div>
+              </div>
+            </GlassCard>
+            <GlassCard>
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-xl bg-pink-500/10 flex items-center justify-center shrink-0">
+                  <Microscope className="w-6 h-6 text-pink-400" />
+                </div>
+                <div>
+                  <h4 className="font-cinzel font-bold text-lg text-text-primary mb-2">Science-Backed Efficacy</h4>
+                  <p className="text-text-muted text-sm leading-relaxed">
+                    No marketing claims without lab validation. Every formulation is tested against
+                    industry-standard microbial panels, surface compatibility matrices, and dermal safety
+                    protocols. We publish efficacy data because transparency builds trust — and trust
+                    builds brands that last.
+                  </p>
+                </div>
+              </div>
+            </GlassCard>
+          </div>
+          <div className="glass rounded-2xl p-6 md:p-8 text-center">
+            <p className="text-text-primary text-lg font-cinzel font-bold mb-4">
+              "We don't just clean. We consume chaos. We eliminate threats. We restore order."
+            </p>
+            <p className="text-text-muted text-sm max-w-2xl mx-auto">
+              This is the GHOULVERSE mission: to make every environment — from festival grounds to factory
+              floors, from vanity tables to garden beds — measurably safer, cleaner, and more technologically
+              capable than we found it.
+            </p>
+          </div>
+        </section>
+
         {/* ═══════ TRACTION ═══════ */}
         <section className="mb-24">
           <SectionHeading
@@ -742,7 +1391,7 @@ function InvestorsContent() {
           <SectionHeading
             icon={DollarSign}
             title="Business Model"
-            subtitle="Asset-light. IP-heavy. Seven revenue streams across three years, each building on the last."
+            subtitle="Asset-light. IP-heavy. Entertainment, licensing, and partnerships provide steady growth while product lines scale. Seven revenue streams across three years, each building on the last."
           />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
@@ -775,7 +1424,7 @@ function InvestorsContent() {
           <SectionHeading
             icon={BarChart3}
             title="Financial Projections"
-            subtitle="Conservative, revenue-backed forecasts. No fantasy metrics — just clear paths to $1.2M by Year 3."
+            subtitle="Conservative, revenue-backed forecasts with diversified income from entertainment, licensing, and partnerships. No fantasy metrics — just clear paths to $1.2M by Year 3."
           />
           <GlassCard className="relative overflow-hidden">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
