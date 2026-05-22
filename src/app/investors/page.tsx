@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense } from "react";
+import { Suspense, useState, useCallback } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import {
@@ -18,6 +18,11 @@ import {
   Clock,
   Sparkles,
   DollarSign,
+  CheckCircle,
+  Send,
+  User,
+  Building2,
+  MessageSquare,
 } from "lucide-react";
 
 /* ───────────────────────────  DATA  ─────────────────────────── */
@@ -274,6 +279,127 @@ function SectionHeading({ icon: Icon, title, subtitle }: { icon: React.ElementTy
 
 function GlassCard({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return <div className={`glass rounded-2xl p-6 md:p-8 ${className}`}>{children}</div>;
+}
+
+/* ───────────────────────────  FORM COMPONENT  ─────────────────────────── */
+
+function InvestorForm() {
+  const [submitted, setSubmitted] = useState(false);
+  const [form, setForm] = useState({ name: "", email: "", company: "", interest: "", message: "" });
+
+  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  }, []);
+
+  const handleSubmit = useCallback((e: React.FormEvent) => {
+    e.preventDefault();
+    // In production, this would POST to an API endpoint
+    setSubmitted(true);
+  }, []);
+
+  if (submitted) {
+    return (
+      <div className="glass rounded-2xl p-8 text-center">
+        <div className="w-16 h-16 rounded-full bg-green-500/10 flex items-center justify-center mx-auto mb-4">
+          <CheckCircle className="w-8 h-8 text-green-400" />
+        </div>
+        <h3 className="font-cinzel font-bold text-xl text-text-primary mb-2">Request Received</h3>
+        <p className="text-text-muted text-sm mb-4">
+          Thank you, {form.name || "investor"}. The full GHOULVERSE investor deck and financial projections will be sent to <span className="text-cyan-glow">{form.email}</span> within 24 hours.
+        </p>
+        <p className="text-text-dim text-xs">
+          In the meantime, explore the live product brands below.
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="space-y-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="relative">
+          <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-dim" />
+          <input
+            type="text"
+            name="name"
+            required
+            placeholder="Full Name"
+            value={form.name}
+            onChange={handleChange}
+            className="w-full pl-10 pr-4 py-3 rounded-xl bg-depth border border-cyan-glow/10 text-text-primary text-sm placeholder:text-text-dim focus:outline-none focus:border-cyan-glow/40 transition-colors"
+          />
+        </div>
+        <div className="relative">
+          <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-dim" />
+          <input
+            type="email"
+            name="email"
+            required
+            placeholder="Email Address"
+            value={form.email}
+            onChange={handleChange}
+            className="w-full pl-10 pr-4 py-3 rounded-xl bg-depth border border-cyan-glow/10 text-text-primary text-sm placeholder:text-text-dim focus:outline-none focus:border-cyan-glow/40 transition-colors"
+          />
+        </div>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="relative">
+          <Building2 className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-dim" />
+          <input
+            type="text"
+            name="company"
+            placeholder="Company / Fund (optional)"
+            value={form.company}
+            onChange={handleChange}
+            className="w-full pl-10 pr-4 py-3 rounded-xl bg-depth border border-cyan-glow/10 text-text-primary text-sm placeholder:text-text-dim focus:outline-none focus:border-cyan-glow/40 transition-colors"
+          />
+        </div>
+        <div className="relative">
+          <DollarSign className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-dim" />
+          <select
+            name="interest"
+            value={form.interest}
+            onChange={handleChange}
+            className="w-full pl-10 pr-4 py-3 rounded-xl bg-depth border border-cyan-glow/10 text-text-primary text-sm focus:outline-none focus:border-cyan-glow/40 transition-colors appearance-none"
+          >
+            <option value="" className="bg-depth">Investment Interest</option>
+            <option value="seed" className="bg-depth">Seed Round ($250K)</option>
+            <option value="future" className="bg-depth">Future Rounds</option>
+            <option value="partnership" className="bg-depth">Strategic Partnership</option>
+            <option value="exploring" className="bg-depth">Just Exploring</option>
+          </select>
+        </div>
+      </div>
+      <div className="relative">
+        <MessageSquare className="absolute left-3 top-3 w-4 h-4 text-text-dim" />
+        <textarea
+          name="message"
+          rows={3}
+          placeholder="Tell us about your interest in GHOULVERSE (optional)"
+          value={form.message}
+          onChange={handleChange}
+          className="w-full pl-10 pr-4 py-3 rounded-xl bg-depth border border-cyan-glow/10 text-text-primary text-sm placeholder:text-text-dim focus:outline-none focus:border-cyan-glow/40 transition-colors resize-none"
+        />
+      </div>
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
+        <button
+          type="submit"
+          className="group inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold text-void tracking-wider uppercase transition-all hover:scale-105"
+          style={{ background: "linear-gradient(135deg, #00f0ff, #a855f7, #ff00ff)" }}
+        >
+          <Send className="w-4 h-4" />
+          Request Full Deck
+        </button>
+        <Link
+          href="/"
+          className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold tracking-wider uppercase transition-all hover:scale-105 border border-cyan-glow/30 text-cyan-glow hover:bg-cyan-glow/10"
+        >
+          Explore GHOULVERSE
+          <ArrowRight className="w-4 h-4" />
+        </Link>
+      </div>
+    </form>
+  );
 }
 
 /* ───────────────────────────  MAIN PAGE  ─────────────────────────── */
@@ -849,22 +975,8 @@ function InvestorsContent() {
                   </div>
                 ))}
               </div>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a
-                  href="mailto:investors@ghoulverse.com"
-                  className="group inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold text-void tracking-wider uppercase transition-all hover:scale-105"
-                  style={{ background: "linear-gradient(135deg, #00f0ff, #a855f7, #ff00ff)" }}
-                >
-                  <Mail className="w-4 h-4" />
-                  Request Full Deck
-                </a>
-                <Link
-                  href="/"
-                  className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold tracking-wider uppercase transition-all hover:scale-105 border border-cyan-glow/30 text-cyan-glow hover:bg-cyan-glow/10"
-                >
-                  Explore GHOULVERSE
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
+              <div className="max-w-xl mx-auto">
+                <InvestorForm />
               </div>
             </div>
           </div>
