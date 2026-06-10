@@ -20,6 +20,7 @@ import {
   DollarSign,
   CheckCircle,
   Send,
+  Loader2,
   User,
   Building2,
   MessageSquare,
@@ -299,17 +300,49 @@ function GlassCard({ children, className = "" }: { children: React.ReactNode; cl
 
 function InvestorForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const [form, setForm] = useState({ name: "", email: "", company: "", interest: "", message: "" });
 
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    setError("");
   }, []);
 
-  const handleSubmit = useCallback((e: React.FormEvent) => {
+  const handleSubmit = useCallback(async (e: React.FormEvent) => {
     e.preventDefault();
-    // In production, this would POST to an API endpoint
-    setSubmitted(true);
-  }, []);
+    setLoading(true);
+    setError("");
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...form, formType: 'investor' }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error || 'Submission failed');
+      }
+
+      // GA4 event tracking
+      if (typeof window !== 'undefined' && (window as any).gtag) {
+        (window as any).gtag('event', 'investor_inquiry', {
+          event_category: 'form',
+          event_label: form.interest || 'unspecified',
+          value: 1,
+        });
+      }
+
+      setSubmitted(true);
+    } catch (err: any) {
+      setError(err.message || 'Something went wrong. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  }, [form]);
 
   if (submitted) {
     return (
@@ -330,6 +363,11 @@ function InvestorForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
+      {error && (
+        <div className="rounded-xl bg-red-500/10 border border-red-500/20 p-4 text-red-400 text-sm text-center">
+          {error}
+        </div>
+      )}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="relative">
           <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-dim" />
@@ -337,10 +375,11 @@ function InvestorForm() {
             type="text"
             name="name"
             required
+            disabled={loading}
             placeholder="Full Name"
             value={form.name}
             onChange={handleChange}
-            className="w-full pl-10 pr-4 py-3 rounded-xl bg-depth border border-cyan-glow/10 text-text-primary text-sm placeholder:text-text-dim focus:outline-none focus:border-cyan-glow/40 transition-colors"
+            className="w-full pl-10 pr-4 py-3 rounded-xl bg-depth border border-cyan-glow/10 text-text-primary text-sm placeholder:text-text-dim focus:outline-none focus:border-cyan-glow/40 transition-colors disabled:opacity-50"
           />
         </div>
         <div className="relative">
@@ -349,10 +388,11 @@ function InvestorForm() {
             type="email"
             name="email"
             required
+            disabled={loading}
             placeholder="Email Address"
             value={form.email}
             onChange={handleChange}
-            className="w-full pl-10 pr-4 py-3 rounded-xl bg-depth border border-cyan-glow/10 text-text-primary text-sm placeholder:text-text-dim focus:outline-none focus:border-cyan-glow/40 transition-colors"
+            className="w-full pl-10 pr-4 py-3 rounded-xl bg-depth border border-cyan-glow/10 text-text-primary text-sm placeholder:text-text-dim focus:outline-none focus:border-cyan-glow/40 transition-colors disabled:opacity-50"
           />
         </div>
       </div>
@@ -362,19 +402,21 @@ function InvestorForm() {
           <input
             type="text"
             name="company"
+            disabled={loading}
             placeholder="Company / Fund (optional)"
             value={form.company}
             onChange={handleChange}
-            className="w-full pl-10 pr-4 py-3 rounded-xl bg-depth border border-cyan-glow/10 text-text-primary text-sm placeholder:text-text-dim focus:outline-none focus:border-cyan-glow/40 transition-colors"
+            className="w-full pl-10 pr-4 py-3 rounded-xl bg-depth border border-cyan-glow/10 text-text-primary text-sm placeholder:text-text-dim focus:outline-none focus:border-cyan-glow/40 transition-colors disabled:opacity-50"
           />
         </div>
         <div className="relative">
           <DollarSign className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-dim" />
           <select
             name="interest"
+            disabled={loading}
             value={form.interest}
             onChange={handleChange}
-            className="w-full pl-10 pr-4 py-3 rounded-xl bg-depth border border-cyan-glow/10 text-text-primary text-sm focus:outline-none focus:border-cyan-glow/40 transition-colors appearance-none"
+            className="w-full pl-10 pr-4 py-3 rounded-xl bg-depth border border-cyan-glow/10 text-text-primary text-sm focus:outline-none focus:border-cyan-glow/40 transition-colors appearance-none disabled:opacity-50"
           >
             <option value="" className="bg-depth">Investment Interest</option>
             <option value="seed" className="bg-depth">Seed Round ($250K)</option>
@@ -389,20 +431,22 @@ function InvestorForm() {
         <textarea
           name="message"
           rows={3}
+          disabled={loading}
           placeholder="Tell us about your interest in GHOULVERSE (optional)"
           value={form.message}
           onChange={handleChange}
-          className="w-full pl-10 pr-4 py-3 rounded-xl bg-depth border border-cyan-glow/10 text-text-primary text-sm placeholder:text-text-dim focus:outline-none focus:border-cyan-glow/40 transition-colors resize-none"
+          className="w-full pl-10 pr-4 py-3 rounded-xl bg-depth border border-cyan-glow/10 text-text-primary text-sm placeholder:text-text-dim focus:outline-none focus:border-cyan-glow/40 transition-colors resize-none disabled:opacity-50"
         />
       </div>
       <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
         <button
           type="submit"
-          className="group inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold text-void tracking-wider uppercase transition-all hover:scale-105"
+          disabled={loading}
+          className="group inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold text-void tracking-wider uppercase transition-all hover:scale-105 disabled:opacity-60 disabled:hover:scale-100"
           style={{ background: "linear-gradient(135deg, #00f0ff, #a855f7, #ff00ff)" }}
         >
-          <Send className="w-4 h-4" />
-          Request Full Deck
+          {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
+          {loading ? 'Sending...' : 'Request Full Deck'}
         </button>
         <Link
           href="/"
