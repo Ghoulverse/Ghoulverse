@@ -181,13 +181,14 @@ const GHOULS: GhoulData[] = [
     products: ["Sweat Neutralizer", "Gear Freshener", "Locker Room Bomb", "Turf Cleaner", "Protein Shake Stain Lifter"],
     marketSize: "$600B global sports & fitness market",
     stats: { power: 90, speed: 95, stealth: 30, intelligence: 60 },
-    live: false,
+    website: "https://www.kidghoul.com",
+    live: true,
   },
   {
     id: "googoo",
     name: "GOO GOO",
     tagline: "Tiny Messes, Big Solutions",
-    description: "Coming soon to The Nursery.",
+    description: "GOO GOO understands that the smallest humans make the biggest messes. From puree explosions to nappy disasters, GOO GOO handles the chaos of early childhood with gentle precision.",
     longDescription: "GOO GOO understands that the smallest humans make the biggest messes. From puree explosions to nappy disasters, GOO GOO handles the chaos of early childhood with gentle precision.",
     color: "blue",
     colorHex: "#3b82f6",
@@ -202,7 +203,7 @@ const GHOULS: GhoulData[] = [
     id: "kid",
     name: "KID GHOUL",
     tagline: "Chaos Contained",
-    description: "Coming soon to The Playground.",
+    description: "KID GHOUL knows that creativity is messy. Paint on walls? Glitter on the dog? A science experiment gone wrong? KID GHOUL doesn't just clean — KID GHOUL encourages the next masterpiece.",
     longDescription: "KID GHOUL knows that creativity is messy. Paint on walls? Glitter on the dog? A science experiment gone wrong? KID GHOUL doesn't just clean — KID GHOUL encourages the next masterpiece.",
     color: "red",
     colorHex: "#ef4444",
@@ -211,13 +212,14 @@ const GHOULS: GhoulData[] = [
     products: ["Finger-Paint Remover", "Crayon Wall Cleaner", "Slime Dissolver", "Craft Supply Sanitizer", "Backpack Deodorizer"],
     marketSize: "$120B global children's products market",
     stats: { power: 50, speed: 80, stealth: 60, intelligence: 70 },
-    live: false,
+    website: "https://www.googooghoul.com",
+    live: true,
   },
   {
     id: "teen",
     name: "TEEN GHOUL",
     tagline: "Attitude & Altitude",
-    description: "Coming soon to The Hangout.",
+    description: "TEEN GHOUL gets it. The room is a disaster, the bathroom is a biohazard, and someone definitely spilled something on the couch. TEEN GHOUL approaches adolescent mess with zero judgment and maximum efficiency.",
     longDescription: "TEEN GHOUL gets it. The room is a disaster, the bathroom is a biohazard, and someone definitely spilled something on the couch. TEEN GHOUL approaches adolescent mess with zero judgment and maximum efficiency.",
     color: "purple",
     colorHex: "#8b5cf6",
@@ -226,7 +228,8 @@ const GHOULS: GhoulData[] = [
     products: ["Room Refresh Bomb", "Acne-Safe Surface Cleaner", "Gaming Chair Deodorizer", "Snack Residue Lifter", "Locker Freshener"],
     marketSize: "$260B global teen & young adult consumer market",
     stats: { power: 55, speed: 90, stealth: 75, intelligence: 65 },
-    live: false,
+    website: "https://www.teenghoul.com",
+    live: true,
   },
   {
     id: "scholar",
@@ -494,7 +497,7 @@ function InvestorsContent() {
                   { label: "Product Lines", value: "108+", sub: "Across 12 brands" },
                   { label: "Market Verticals", value: "12", sub: "Zero overlap" },
                   { label: "Combined TAM", value: "$5T+", sub: "Global addressable" },
-                  { label: "Live Assets", value: "8", sub: "Sites + game" },
+                  { label: "Live Assets", value: "10", sub: "Sites + game" },
                 ].map((stat) => (
                   <div key={stat.label} className="glass rounded-xl p-5 text-center">
                     <p className="font-creepster text-3xl md:text-4xl text-cyan-glow mb-1">{stat.value}</p>
@@ -1588,6 +1591,93 @@ function InvestorsContent() {
                 ))}
               </ul>
             </GlassCard>
+          </div>
+        </section>
+
+        {/* ═══════ TEAM & LEADERSHIP ═══════ */}
+        <section className="mb-24">
+          <div className="text-center mb-12">
+            <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-[0.2em] uppercase border border-cyan-glow/20 text-cyan-glow bg-cyan-glow/5 mb-4">
+              The People
+            </span>
+            <h2 className="font-creepster text-3xl md:text-4xl gradient-text mb-4">Team & Leadership</h2>
+            <p className="text-text-muted max-w-2xl mx-auto">
+              Investors invest in people first. Meet the team building the GHOULVERSE.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6 mb-12">
+            {/* Founder */}
+            <div className="md:col-span-1 glass rounded-2xl p-6 text-center border border-cyan-glow/10">
+              <div className="w-20 h-20 rounded-full mx-auto mb-4 border-2 border-cyan-glow/20 flex items-center justify-center bg-abyss">
+                <span className="text-3xl">👤</span>
+              </div>
+              <h3 className="font-cinzel font-bold text-lg text-text-primary mb-1">[Your Name]</h3>
+              <p className="text-cyan-glow text-xs font-bold uppercase tracking-wider mb-3">Founder & Chief Ghoul</p>
+              <p className="text-text-dim text-sm leading-relaxed mb-4">
+                Vision, strategy, and the original spark. Leading product, brand, and investor relations.
+              </p>
+              <div className="flex items-center justify-center gap-3">
+                <a href="https://linkedin.com/in/YOUR_PROFILE" target="_blank" rel="noopener noreferrer"
+                  className="text-text-dim hover:text-cyan-glow transition-colors">
+                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                </a>
+                <a href="mailto:founder@ghoulverse.com" className="text-text-dim hover:text-cyan-glow transition-colors">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                </a>
+              </div>
+            </div>
+
+            {/* Core Team */}
+            <div className="md:col-span-2 glass rounded-2xl p-6 border border-cyan-glow/10">
+              <h3 className="font-cinzel font-bold text-sm uppercase tracking-wider text-text-primary mb-4">Core Team</h3>
+              <div className="grid sm:grid-cols-2 gap-4">
+                {[
+                  { role: "Brand & Creative Director", status: "Hiring" },
+                  { role: "Product Development Lead", status: "Hiring" },
+                  { role: "Game Developer", status: "Contractor" },
+                  { role: "Growth & Partnerships", status: "Hiring" },
+                ].map((member) => (
+                  <div key={member.role} className="flex items-center gap-3 p-3 rounded-lg bg-white/5">
+                    <div className="w-10 h-10 rounded-full bg-cyan-glow/10 flex items-center justify-center text-cyan-glow text-sm font-bold">
+                      +
+                    </div>
+                    <div>
+                      <p className="text-text-primary text-sm font-medium">{member.role}</p>
+                      <p className="text-text-dim text-[10px] uppercase tracking-wider">{member.status}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <p className="text-text-dim/50 text-xs mt-4">
+                Growing team of 4 full-time + contractors. Series A will fund 8 additional hires.
+              </p>
+            </div>
+          </div>
+
+          {/* Advisory Circle */}
+          <div className="glass rounded-2xl p-6 border border-cyan-glow/10">
+            <h3 className="font-cinzel font-bold text-sm uppercase tracking-wider text-text-primary mb-4">Advisory Circle</h3>
+            <div className="grid sm:grid-cols-2 md:grid-cols-5 gap-4">
+              {[
+                { name: "[Advisor 1]", role: "Consumer IP Strategy", status: "Committed" },
+                { name: "[Advisor 2]", role: "Retail & Distribution", status: "Committed" },
+                { name: "[Advisor 3]", role: "Trademark Law", status: "In Conversation" },
+                { name: "[Advisor 4]", role: "Gaming & Esports", status: "In Conversation" },
+                { name: "[Advisor 5]", role: "D2C & Subscription", status: "In Conversation" },
+              ].map((advisor) => (
+                <div key={advisor.name} className="text-center p-4 rounded-lg bg-white/5">
+                  <div className="w-12 h-12 rounded-full mx-auto mb-2 bg-cyan-glow/10 flex items-center justify-center text-cyan-glow text-lg">
+                    {advisor.status === "Committed" ? "★" : "○"}
+                  </div>
+                  <p className="text-text-primary text-xs font-bold">{advisor.name}</p>
+                  <p className="text-text-dim text-[10px]">{advisor.role}</p>
+                  <span className={`inline-block mt-1 px-2 py-0.5 rounded-full text-[9px] font-semibold uppercase ${advisor.status === "Committed" ? "bg-cyan-glow/20 text-cyan-glow" : "bg-white/5 text-text-dim"}`}>
+                    {advisor.status}
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 

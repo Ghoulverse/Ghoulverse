@@ -67,7 +67,7 @@ export default function HomePage() {
           </p>
 
           <p className="text-text-dim text-base md:text-lg max-w-2xl mx-auto mb-10 leading-relaxed animate-slide-up delay-300">
-            Six product brands. One universe. Infinite clean. The House of GHOUL brings
+            Ten product brands. One universe. Infinite clean. The House of GHOUL brings
             supernatural cleaning to every realm — from industrial workshops to digital mainframes.
           </p>
 
@@ -96,14 +96,14 @@ export default function HomePage() {
             <div className="text-center">
               <div className="flex items-center justify-center gap-2 mb-1">
                 <Skull className="w-4 h-4 text-cyan-glow" />
-                <span className="font-creepster text-3xl md:text-4xl text-cyan-glow">6</span>
+                <span className="font-creepster text-3xl md:text-4xl text-cyan-glow">10</span>
               </div>
-              <p className="text-text-dim text-xs uppercase tracking-wider">Product Lines</p>
+              <p className="text-text-dim text-xs uppercase tracking-wider">Product Brands</p>
             </div>
             <div className="text-center">
               <div className="flex items-center justify-center gap-2 mb-1">
                 <Droplets className="w-4 h-4 text-purple-glow" />
-                <span className="font-creepster text-3xl md:text-4xl text-purple-glow">8</span>
+                <span className="font-creepster text-3xl md:text-4xl text-purple-glow">10</span>
               </div>
               <p className="text-text-dim text-xs uppercase tracking-wider">Ghoul Realms</p>
             </div>
@@ -205,7 +205,7 @@ export default function HomePage() {
               The House of GHOUL
             </span>
             <h2 className="font-creepster text-4xl md:text-6xl gradient-text mb-4">
-              Five Product Brands
+              Eight Product Brands
             </h2>
             <p className="text-text-muted max-w-2xl mx-auto">
               Each brand is a specialized entity with its own formulations, identity, and domain.

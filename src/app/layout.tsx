@@ -2,15 +2,16 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import CookieBanner from "@/components/CookieBanner";
 
 export const metadata: Metadata = {
   title: "GHOULVERSE — House of GHOUL",
   description:
-    "Welcome to the House of GHOUL. Five product brands, one universe, infinite clean. Explore PARTY, BEAUTY, GARDEN, ZEN, and TRADIE GHOUL. Play GOO RUNNER and discover the Original Consumer.",
+    "Welcome to the House of GHOUL. Ten product brands, one universe, infinite clean. Explore all Ghouls from GOO GHOUL to TEEN GHOUL. Play GOO RUNNER and discover the Original Consumer.",
   keywords: ["GHOULVERSE", "House of GHOUL", "GOO GHOUL", "cleaning brands", "game", "universe", "endless runner"],
   openGraph: {
     title: "GHOULVERSE — House of GHOUL",
-    description: "Five product brands. One house. Infinite clean. Enter the GHOULVERSE.",
+    description: "Ten product brands. One house. Infinite clean. Enter the GHOULVERSE.",
     type: "website",
   },
 };
@@ -41,6 +42,9 @@ export default function RootLayout({
 
         {/* Footer */}
         <Footer />
+
+        {/* Cookie Consent */}
+        <CookieBanner />
       </body>
     </html>
   );

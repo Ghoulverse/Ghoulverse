@@ -17,7 +17,7 @@ export default function Footer() {
               </span>
             </Link>
             <p className="text-text-dim text-sm leading-relaxed">
-              Five product brands. One universe. Infinite clean. The House of GHOUL.
+              Ten product brands. One universe. Infinite clean. The House of GHOUL.
             </p>
           </div>
 
@@ -35,6 +35,9 @@ export default function Footer() {
                 { name: "ZEN", slug: "zen", domain: "https://www.zenghoul.com" },
                 { name: "TRADIE", slug: "tradie", domain: "https://www.tradieghoul.com" },
                 { name: "GEEK", slug: "geek", domain: "https://www.geekghoul.com" },
+                { name: "KID", slug: "kid", domain: "https://www.kidghoul.com" },
+                { name: "GOO GOO", slug: "googoo", domain: "https://www.googooghoul.com" },
+                { name: "TEEN", slug: "teen", domain: "https://www.teenghoul.com" },
               ].map((realm) => (
                 <li key={realm.slug}>
                   <a
@@ -49,12 +52,12 @@ export default function Footer() {
               ))}
             </ul>
             <h4 className="font-cinzel font-semibold text-text-primary mt-6 mb-3 tracking-wider text-sm">
-              GAME REALMS
+              IN DEVELOPMENT
             </h4>
             <ul className="space-y-2">
               {[
+                { name: "SPORT", slug: "sport" },
                 { name: "SCHOLAR", slug: "scholar" },
-                { name: "TODDLER", slug: "toddler" },
               ].map((realm) => (
                 <li key={realm.slug}>
                   <Link
@@ -85,14 +88,14 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <a
-                  href="https://www.googhoul.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-text-dim hover:text-cyan-glow transition-colors text-sm"
-                >
-                  Meet GOO GHOUL
-                </a>
+                <Link href="/founder" className="text-text-dim hover:text-cyan-glow transition-colors text-sm">
+                  Founder
+                </Link>
+              </li>
+              <li>
+                <Link href="/press" className="text-text-dim hover:text-cyan-glow transition-colors text-sm">
+                  Press Kit
+                </Link>
               </li>
             </ul>
           </div>
@@ -104,19 +107,27 @@ export default function Footer() {
             </h4>
             <div className="flex gap-3">
               {[Twitter, Instagram, Github, Mail].map((Icon, i) => (
-                <a
+                <div
                   key={i}
-                  href="#"
-                  className="w-9 h-9 rounded-full glass flex items-center justify-center hover:border-cyan-glow/40 transition-colors"
+                  className="w-9 h-9 rounded-full glass flex items-center justify-center opacity-40 cursor-default"
+                  title="Coming soon"
                 >
                   <Icon className="w-4 h-4 text-text-dim" />
-                </a>
+                </div>
               ))}
             </div>
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-cyan-glow/5 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="mt-8 flex items-center justify-center gap-4 text-[10px] tracking-wider uppercase text-text-dim/30">
+          <a href="/privacy" className="hover:text-cyan-glow transition-colors">Privacy Policy</a>
+          <span>|</span>
+          <a href="/terms" className="hover:text-cyan-glow transition-colors">Terms of Service</a>
+          <span>|</span>
+          <a href="/cookies" className="hover:text-cyan-glow transition-colors">Cookie Policy</a>
+        </div>
+
+        <div className="mt-8 pt-8 border-t border-cyan-glow/5 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-text-dim text-xs">
             &copy; 2026 GHOULVERSE. The GHOUL eats the GOO.
           </p>

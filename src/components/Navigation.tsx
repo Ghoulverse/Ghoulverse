@@ -9,6 +9,8 @@ const navLinks = [
   { href: "/ghouls/", label: "Realms" },
   { href: "/play/", label: "Play" },
   { href: "/lore/", label: "Lore" },
+  { href: "/investors", label: "Invest" },
+  { href: "/press", label: "Press" },
 ];
 
 export default function Navigation() {
