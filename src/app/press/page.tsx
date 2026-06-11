@@ -98,9 +98,9 @@ export default function PressPage() {
                         <p className="text-text-primary text-sm">{item.name}</p>
                         <p className="text-text-dim/50 text-[10px]">{item.format} · {item.size}</p>
                       </div>
-                      <button className="opacity-0 group-hover:opacity-100 transition-opacity px-3 py-1 rounded-lg text-[10px] font-semibold bg-cyan-glow/10 text-cyan-glow hover:bg-cyan-glow/20">
-                        <Download className="w-3 h-3 inline mr-1" /> Download
-                      </button>
+                      <span className="opacity-0 group-hover:opacity-100 transition-opacity px-3 py-1 rounded-lg text-[10px] font-semibold bg-cyan-glow/10 text-cyan-glow">
+                        Coming soon
+                      </span>
                     </li>
                   ))}
                 </ul>
@@ -110,11 +110,11 @@ export default function PressPage() {
 
           {/* Download All */}
           <div className="mt-12 text-center">
-            <button className="px-8 py-4 rounded-xl font-semibold text-void tracking-wider uppercase transition-all hover:scale-105 inline-flex items-center gap-2"
+            <div className="px-8 py-4 rounded-xl font-semibold text-void tracking-wider uppercase inline-flex items-center gap-2 opacity-50 cursor-default"
               style={{ background: "linear-gradient(135deg, #00f0ff, #a855f7)" }}>
               <Download className="w-4 h-4" /> Download Complete Press Kit
-            </button>
-            <p className="text-text-dim/50 text-xs mt-3">ZIP · ~3.2 MB · Updated June 2026</p>
+            </div>
+            <p className="text-text-dim/50 text-xs mt-3">Press kit assets coming Q3 2026</p>
           </div>
         </div>
       </section>

@@ -182,8 +182,8 @@ const GHOULS: GhoulData[] = [
     products: ["Sweat Neutralizer", "Gear Freshener", "Locker Room Bomb", "Turf Cleaner", "Protein Shake Stain Lifter"],
     marketSize: "$600B global sports & fitness market",
     stats: { power: 90, speed: 95, stealth: 30, intelligence: 60 },
-    website: "https://www.kidghoul.com",
-    live: true,
+    website: "https://www.ghoulverse.com/ghouls/sport/",
+    live: false,
   },
   {
     id: "googoo",
@@ -198,7 +198,8 @@ const GHOULS: GhoulData[] = [
     products: ["Bottle Sterilizer", "Nappy Bin Refresher", "Puree Stain Lifter", "Toy Sanitizer", "Crib Sheet Rescue"],
     marketSize: "$300B global baby care market",
     stats: { power: 30, speed: 70, stealth: 80, intelligence: 85 },
-    live: false,
+    website: "https://www.googooghoul.com",
+    live: true,
   },
   {
     id: "kid",
@@ -213,7 +214,7 @@ const GHOULS: GhoulData[] = [
     products: ["Finger-Paint Remover", "Crayon Wall Cleaner", "Slime Dissolver", "Craft Supply Sanitizer", "Backpack Deodorizer"],
     marketSize: "$120B global children's products market",
     stats: { power: 50, speed: 80, stealth: 60, intelligence: 70 },
-    website: "https://www.googooghoul.com",
+    website: "https://www.kidghoul.com",
     live: true,
   },
   {
@@ -1656,13 +1657,13 @@ function InvestorsContent() {
               <div className="w-20 h-20 rounded-full mx-auto mb-4 border-2 border-cyan-glow/20 flex items-center justify-center bg-abyss">
                 <span className="text-3xl">👤</span>
               </div>
-              <h3 className="font-cinzel font-bold text-lg text-text-primary mb-1">[Your Name]</h3>
+              <h3 className="font-cinzel font-bold text-lg text-text-primary mb-1">Martin Khoury</h3>
               <p className="text-cyan-glow text-xs font-bold uppercase tracking-wider mb-3">Founder & Chief Ghoul</p>
               <p className="text-text-dim text-sm leading-relaxed mb-4">
                 Vision, strategy, and the original spark. Leading product, brand, and investor relations.
               </p>
               <div className="flex items-center justify-center gap-3">
-                <a href="https://linkedin.com/in/YOUR_PROFILE" target="_blank" rel="noopener noreferrer"
+                <a href="https://linkedin.com/in/martinkhoury" target="_blank" rel="noopener noreferrer"
                   className="text-text-dim hover:text-cyan-glow transition-colors">
                   <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
                 </a>
@@ -1702,26 +1703,9 @@ function InvestorsContent() {
           {/* Advisory Circle */}
           <div className="glass rounded-2xl p-6 border border-cyan-glow/10">
             <h3 className="font-cinzel font-bold text-sm uppercase tracking-wider text-text-primary mb-4">Advisory Circle</h3>
-            <div className="grid sm:grid-cols-2 md:grid-cols-5 gap-4">
-              {[
-                { name: "[Advisor 1]", role: "Consumer IP Strategy", status: "Committed" },
-                { name: "[Advisor 2]", role: "Retail & Distribution", status: "Committed" },
-                { name: "[Advisor 3]", role: "Trademark Law", status: "In Conversation" },
-                { name: "[Advisor 4]", role: "Gaming & Esports", status: "In Conversation" },
-                { name: "[Advisor 5]", role: "D2C & Subscription", status: "In Conversation" },
-              ].map((advisor) => (
-                <div key={advisor.name} className="text-center p-4 rounded-lg bg-white/5">
-                  <div className="w-12 h-12 rounded-full mx-auto mb-2 bg-cyan-glow/10 flex items-center justify-center text-cyan-glow text-lg">
-                    {advisor.status === "Committed" ? "★" : "○"}
-                  </div>
-                  <p className="text-text-primary text-xs font-bold">{advisor.name}</p>
-                  <p className="text-text-dim text-[10px]">{advisor.role}</p>
-                  <span className={`inline-block mt-1 px-2 py-0.5 rounded-full text-[9px] font-semibold uppercase ${advisor.status === "Committed" ? "bg-cyan-glow/20 text-cyan-glow" : "bg-white/5 text-text-dim"}`}>
-                    {advisor.status}
-                  </span>
-                </div>
-              ))}
-            </div>
+            <p className="text-text-dim text-sm text-center py-8">
+              Advisory positions open. If you have expertise in consumer IP, retail distribution, gaming, or D2C and want to shape the future of character-driven brands, <a href="mailto:founder@ghoulverse.com" className="text-cyan-glow hover:underline">get in touch</a>.
+            </p>
           </div>
         </section>
 

@@ -8,15 +8,25 @@ import CookieBanner from "@/components/CookieBanner";
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID || "G-XXXXXXXXXX";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.ghoulverse.com"),
   title: "GHOULVERSE — House of GHOUL",
   description:
-    "Welcome to the House of GHOUL. Ten product brands, one universe, infinite clean. Explore all Ghouls from GOO GHOUL to TEEN GHOUL. Play GOO RUNNER and discover the Original Consumer.",
+    "Welcome to the House of GHOUL. Twelve spirits, one universe, infinite clean. Explore all Ghouls from GOO GHOUL to TEEN GHOUL. Play GOO RUNNER and discover the Original Consumer.",
   keywords: ["GHOULVERSE", "House of GHOUL", "GOO GHOUL", "cleaning brands", "game", "universe", "endless runner"],
   openGraph: {
     title: "GHOULVERSE — House of GHOUL",
-    description: "Ten product brands. One house. Infinite clean. Enter the GHOULVERSE.",
+    description: "Twelve spirits. One house. Infinite clean. Enter the GHOULVERSE.",
     type: "website",
+    url: "https://www.ghoulverse.com",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "GHOULVERSE — House of GHOUL" }],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "GHOULVERSE — House of GHOUL",
+    description: "Twelve spirits. One house. Infinite clean. Enter the GHOULVERSE.",
+    images: ["/og-image.png"],
+  },
+  themeColor: "#00f0ff",
 };
 
 export default function RootLayout({

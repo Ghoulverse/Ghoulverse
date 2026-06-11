@@ -29,8 +29,8 @@ export default function FounderPage() {
                   <div className="w-32 h-32 rounded-full mx-auto mb-6 border-2 border-cyan-glow/30 flex items-center justify-center bg-abyss">
                     <span className="text-5xl">👤</span>
                   </div>
-                  <p className="text-text-dim text-sm">[Add your professional headshot here]</p>
-                  <p className="text-text-dim/50 text-xs mt-2">Recommended: 800×800px, neutral background</p>
+                  <p className="text-text-dim text-sm">Martin Khoury</p>
+                  <p className="text-text-dim/50 text-xs mt-2">Founder & Chief Ghoul</p>
                 </div>
               </div>
               <div className="absolute -bottom-4 -right-4 px-4 py-2 rounded-full glass border border-cyan-glow/20">
@@ -44,7 +44,7 @@ export default function FounderPage() {
                 The Mind Behind the Mess
               </span>
               <h1 className="font-creepster text-5xl md:text-6xl mb-4 bg-gradient-to-r from-cyan-glow to-purple-glow bg-clip-text text-transparent">
-                [Your Name]
+                Martin Khoury
               </h1>
               <p className="text-text-muted text-lg mb-6">
                 Founder & Chief Ghoul, The GHOULVERSE Pty Ltd
@@ -56,13 +56,15 @@ export default function FounderPage() {
                   <em className="text-text-primary"> cleaning is universal, but belonging is personal.</em>
                 </p>
                 <p>
-                  [Write your origin story here. How did you conceive of GHOULVERSE? What experience led you to believe
-                  that character-driven cleaning brands could change how people relate to their homes, their health, and
-                  themselves? This is your hero's journey — make it honest and compelling. 150-200 words recommended.]
+                  GHOULVERSE was born from a single insight: cleaning products are sold by the litre, but bought by the identity.
+                  Every human has a version of themselves they want to express — the party host, the zen minimalist, the
+                  gritty tradie, the curious teen. Why shouldn't the products they use reflect who they actually are?
                 </p>
                 <p>
-                  Before GHOULVERSE, [your background — previous ventures, relevant industry experience, or the
-                  insight that started it all]. Today, [your current focus and what drives you].
+                  Before GHOULVERSE, I spent years watching brands struggle to connect across demographics while
+                  characters in games built billion-dollar empires simply by making people feel seen. The gap was obvious.
+                  Today, I'm building the first consumer ecosystem where every vertical has a spirit, every product has a
+                  personality, and every customer has a Ghoul that understands them.
                 </p>
               </div>
 
@@ -72,7 +74,7 @@ export default function FounderPage() {
                   style={{ background: "linear-gradient(135deg, #00f0ff, #a855f7)", color: "#000" }}>
                   <Mail className="w-4 h-4" /> founder@ghoulverse.com
                 </a>
-                <a href="https://linkedin.com/in/YOUR_PROFILE" target="_blank" rel="noopener noreferrer"
+                <a href="https://linkedin.com/in/martinkhoury" target="_blank" rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold border border-cyan-glow/30 text-cyan-glow hover:bg-cyan-glow/10 transition-all">
                   <Linkedin className="w-4 h-4" /> LinkedIn
                 </a>
@@ -114,7 +116,7 @@ export default function FounderPage() {
             &ldquo;We don't sell cleaning products. We sell belonging to a universe where every human has a Ghoul that understands them.&rdquo;
           </blockquote>
           <p className="text-text-dim text-sm">
-            — [Your Name], Founder & Chief Ghoul
+            — Martin Khoury, Founder & Chief Ghoul
           </p>
         </div>
       </section>

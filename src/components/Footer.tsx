@@ -17,7 +17,7 @@ export default function Footer() {
               </span>
             </Link>
             <p className="text-text-dim text-sm leading-relaxed">
-              Ten product brands. One universe. Infinite clean. The House of GHOUL.
+              Twelve spirits. One universe. Infinite clean. The House of GHOUL.
             </p>
           </div>
 
