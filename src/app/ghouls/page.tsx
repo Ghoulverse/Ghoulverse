@@ -20,7 +20,7 @@ export default function GhoulsPage() {
             The Constellation
           </h1>
           <p className="text-text-muted max-w-2xl mx-auto">
-            Five product brands and three game realms orbit the primordial heart of GOO GHOUL.
+            Eleven consumer verticals orbit the primordial heart of GOO GHOUL.
             Explore each entity and visit their dedicated character sites.
           </p>
         </div>

@@ -53,13 +53,12 @@ export default function LorePage() {
                 first great cleansing, new forms began to emerge — each shaped by the nature of
                 the mess they were born to conquer. The meditative calm of ZEN GHOUL. The
                 industrial fury of TRADIE GHOUL. The chaotic joy of PARTY GHOUL. The nurturing
-                patience of GARDEN GHOUL. The precision of BEAUTY GHOUL. The curiosity of BABY
-                GHOUL. The wisdom of SCHOLAR GHOUL.
+                patience of GARDEN GHOUL. The precision of BEAUTY GHOUL. The digital focus of GEEK GHOUL. The tiny curiosity of GOO GOO. The creative chaos of KID GHOUL. The attitude of TEEN GHOUL. The adrenaline of SPORT GHOUL. The wisdom of BOOK GHOUL.
               </p>
               <p>
                 Together, they formed <strong className="text-magenta-glow">The GHOULVERSE</strong>:
-                eight realms of purpose, eight approaches to order, eight reasons to believe that
-                no mess is eternal.
+                twelve realms of purpose, twelve approaches to order, twelve reasons to believe that
+                no problem is eternal.
               </p>
             </div>
           </div>

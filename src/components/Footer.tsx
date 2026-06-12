@@ -17,7 +17,7 @@ export default function Footer() {
               </span>
             </Link>
             <p className="text-text-dim text-sm leading-relaxed">
-              Twelve spirits. One universe. Infinite clean. The House of GHOUL.
+              Twelve spirits. One universe. Infinite potential. The House of GHOUL.
             </p>
           </div>
 
@@ -57,7 +57,7 @@ export default function Footer() {
             <ul className="space-y-2">
               {[
                 { name: "SPORT", slug: "sport" },
-                { name: "SCHOLAR", slug: "scholar" },
+                { name: "BOOK", slug: "scholar" },
               ].map((realm) => (
                 <li key={realm.slug}>
                   <Link

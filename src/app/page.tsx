@@ -67,8 +67,8 @@ export default function HomePage() {
           </p>
 
           <p className="text-text-dim text-base md:text-lg max-w-2xl mx-auto mb-10 leading-relaxed animate-slide-up delay-300">
-            Ten product brands. One universe. Infinite clean. The House of GHOUL brings
-            supernatural cleaning to every realm — from industrial workshops to digital mainframes.
+            Twelve consumer verticals. One universe. Infinite potential. The House of GHOUL brings
+            character-driven products to every realm — from industrial workshops to digital mainframes.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 animate-slide-up delay-400">
@@ -96,14 +96,14 @@ export default function HomePage() {
             <div className="text-center">
               <div className="flex items-center justify-center gap-2 mb-1">
                 <Skull className="w-4 h-4 text-cyan-glow" />
-                <span className="font-creepster text-3xl md:text-4xl text-cyan-glow">10</span>
+                <span className="font-creepster text-3xl md:text-4xl text-cyan-glow">12</span>
               </div>
-              <p className="text-text-dim text-xs uppercase tracking-wider">Product Brands</p>
+              <p className="text-text-dim text-xs uppercase tracking-wider">Consumer Verticals</p>
             </div>
             <div className="text-center">
               <div className="flex items-center justify-center gap-2 mb-1">
                 <Droplets className="w-4 h-4 text-purple-glow" />
-                <span className="font-creepster text-3xl md:text-4xl text-purple-glow">10</span>
+                <span className="font-creepster text-3xl md:text-4xl text-purple-glow">12</span>
               </div>
               <p className="text-text-dim text-xs uppercase tracking-wider">Ghoul Realms</p>
             </div>
@@ -205,11 +205,11 @@ export default function HomePage() {
               The House of GHOUL
             </span>
             <h2 className="font-creepster text-4xl md:text-6xl gradient-text mb-4">
-              Eight Product Brands
+              The Full Ecosystem
             </h2>
             <p className="text-text-muted max-w-2xl mx-auto">
-              Each brand is a specialized entity with its own formulations, identity, and domain.
-              Together they form the House of GHOUL portfolio.
+              Each ghoul is a specialised consumer champion with its own vertical, identity, and domain.
+              Together they form the GHOULVERSE ecosystem.
             </p>
           </div>
 
